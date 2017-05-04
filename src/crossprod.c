@@ -31,6 +31,30 @@ void crossprod(double **x, int n, int p, double **xpx)
   return;
 }
 
+void crossprodusevoter(double **x, int n, int p, double **xpx, int *usevoter)
+{
+  int i, j, k;
+  double *xrow;
+  
+  for (j=0;j<p;j++) {           /* initialization */
+    for (k=0;k<p;k++) {
+      xpx[j][k]=0.0;
+    }
+  }
+
+  for (i=0;i<n;i++){
+    if (usevoter[i] > 0) {
+      xrow = x[i];
+      for(j=0;j<p;j++){
+	for(k=0;k<p;k++){
+	  xpx[j][k] += xrow[j]*xrow[k];
+	}
+      }
+    }
+  }
+
+  return;
+}
 
 void crossprodslow(double **x, int n, int p, double **xpx)
 {
@@ -92,6 +116,27 @@ void crossxyj(double **x, double **y, int n, int k, int p, double *xpy)
     yip = y[i][p];
     for(j=0;j<k;j++){
       xpy[j] += xrow[j]*yip;
+    }
+  }
+  return;
+}
+
+void crossxyjusevoter(double **x, double **y, int n, int k, int p, double *xpy, int *usevoter)
+{
+  int i,j;
+  double *xrow, yip;
+
+  for (j=0;j<k;j++){    /* initialize */
+    xpy[j]=0.0;
+  }
+
+  for (i=0;i<n;i++){    /* loop over observations */
+    if (usevoter[i] > 0) {
+      xrow = x[i];
+      yip = y[i][p];
+      for(j=0;j<k;j++){
+	xpy[j] += xrow[j]*yip;
+      }
     }
   }
   return;
@@ -174,6 +219,38 @@ void crosscheck(double **x, double **ystar, int **ok,
   for(i=0;i<n;i++){        /* loop over legislators */
     okij = ok[i][j];
     if(okij){
+      xrow = x[i];
+      ystarij = ystar[i][j];
+      for(k=0;k<q;k++){                    /* loop over cols */
+	xk = xrow[k];
+	xpy[k] += xk*ystarij;            /* X'y contribution */
+	for(l=0;l<q;l++){
+	  xl = xrow[l];
+	  xpx[k][l] += xk*xl;           /* X'X contribution */
+	}
+      }
+    }
+  }
+  return;
+}
+
+/* used in updating beta_j, with checks for missing y_{ij} */
+void crosscheckusevoter(double **x, double **ystar, int **ok,
+			int n, int q, int j, 
+			double **xpx, double *xpy, int *usevoter)
+{
+  int i,k,l, okij;
+  double *xrow, ystarij, xk, xl;
+  for(k=0;k<q;k++){        /* initializations */
+    xpy[k]=0.0;
+    for(l=0;l<q;l++){
+      xpx[k][l]=0.0;
+    }
+  }
+
+  for(i=0;i<n;i++){        /* loop over legislators */
+    okij = ok[i][j];
+    if(okij && (usevoter[i] > 0)){
       xrow = x[i];
       ystarij = ystar[i][j];
       for(k=0;k<q;k++){                    /* loop over cols */

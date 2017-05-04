@@ -25,7 +25,8 @@ void IDEAL(int *n1, int *m1, int *d1, double *y1, int *maxiter1, int *thin1,
 	   int *impute1, int *mda, double *xpriormeans1, 
 	   double  *xpriorprec1, double *bpriormeans1, double *bpriorprec1, 
 	   double *xstart1, double *bstart1, double *xoutput, double *boutput,
-	   int *burnin1, int *usefile, int *bsave, char **filename1, int *verbose1)
+	   int *burnin1, int *usefile, int *bsave, char **filename1, int *verbose1,
+	   int *limitvoters1, int *usevoter)
 {
   int e, xocursor, bocursor, xlength, blength, q, nm, iter;
   int inloop, **ok, burnin, n, m, d, maxiter, thin, impute, verbose;
@@ -232,8 +233,12 @@ void IDEAL(int *n1, int *m1, int *d1, double *y1, int *maxiter1, int *thin1,
       makexreg(xreg,x,n,d,q);
       //Rprintf("past makexreg\n");
       
-      updateb(ystar,ok,beta,xreg,
-	      bp,bpv,n,m,d,impute);
+      if (*limitvoters1 > 0)
+	updatebusevoter(ystar,ok,beta,xreg,
+		bp,bpv,n,m,d,impute,usevoter);
+      else
+	updateb(ystar,ok,beta,xreg,
+		bp,bpv,n,m,d,impute);
       //Rprintf("past updateb\n");      
 
       R_CheckUserInterrupt();               /* check for user interrupt */

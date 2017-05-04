@@ -16,12 +16,13 @@
 
 /* putting stuff in y star */
 
+#define STD_DEV 1.0
+
 void updatey(double **ystar, double **y, double **x, double **beta,
 	     int n, int m, int d, int iter)
 {
   int i,j,k;
-  double *xrow, *brow, mu, sd;
-  sd = 1.0;
+  double *xrow, *brow, mu;
   //  float z;
 
   for(i=0;i<n;i++){               /* loop over legislators */
@@ -36,10 +37,10 @@ void updatey(double **ystar, double **y, double **x, double **beta,
 	mu += brow[k]*xrow[k];
       }
       if (y[i][j]==9.0){         /* sample untruncated, missing responses */
-	ystar[i][j] = rnorm(mu,1.0);
+	ystar[i][j] = rnorm(mu,STD_DEV);
       }
       else{                      /* sample from truncated normals */
-	ystar[i][j] = dtnorm(&mu,&sd,&y[i][j]);  /* try two */
+	ystar[i][j] = dtnorm(mu,STD_DEV,y[i][j]);  /* try two */
       }
     }
   }

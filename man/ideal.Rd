@@ -17,7 +17,7 @@ ideal(object, codes = object$codes,
       meanzero = normalize,
       priors = NULL, startvals = "eigen",
       store.item = FALSE, file = NULL,
-      verbose=FALSE)
+      verbose=FALSE, use.voter=NULL)
 }
 
 \arguments{
@@ -102,6 +102,14 @@ ideal(object, codes = object$codes,
   \item{verbose}{logical, default
     is \code{FALSE}, which generates relatively little output to the R
     console during execution.}
+
+  \item{use.voter}{A vector of logicals of length \code{n} controlling
+    which legislators' vote data informs item parameter
+    estimates. Legislators corresponding to \code{FALSE} entries will
+    not have their voting data included in updates of the item
+    parameters. The default value of \code{NULL} will run the standard
+    ideal-point model, which uses all legislators in updating item
+    parameters. See Jessee (2016).}
 }
 
 \details{The function fits a \code{d}+1 parameter item-response model to
@@ -317,6 +325,10 @@ ideal(object, codes = object$codes,
 
   Jackman, Simon. 2009.  \emph{Bayesian Analysis for the Social
   Sciences}.  Wiley: Hoboken, New Jersey.
+
+  Jessee, Stephen. 2016. (How) Can We Estimate the Ideology
+  of Citizens and Political Elites on the Same Scale?
+  \emph{American Journal of Political Science}.
 
   Patz, Richard J. and Brian W. Junker. 1999.  A Straightforward
   Approach to Markov Chain Monte Carlo Methods for Item Response

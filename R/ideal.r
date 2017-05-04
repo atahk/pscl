@@ -13,7 +13,8 @@ ideal <- function(object,
                   startvals="eigen",
                   store.item=FALSE,
                   file=NULL,
-                  verbose=FALSE){
+                  verbose=FALSE,
+                  use.voter=NULL){
 
   cat("ideal: analysis of roll call data via Markov chain Monte Carlo methods.\n\n")
 
@@ -109,6 +110,13 @@ ideal <- function(object,
   m <- dim(y$votes)[2]
   legis.names <- dimnames(y$votes)[[1]]
   vote.names <- dimnames(y$votes)[[2]]
+
+  if (!is.null(use.voter)) {
+      if (!is.vector(use.voter))
+          stop("use.voter must be a vector of length n")
+      if (n != length(use.voter))
+          stop("use.voter must be a vector of length n")
+  }
 
   ## map roll call votes into binary format required by ideal
   if(verbose){
@@ -400,7 +408,7 @@ ideal <- function(object,
                  xoutput=NULL,
                  boutput=NULL,as.integer(burnin),
                  as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose))
+                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
   }
   ## not saving output to file, saving output to memory
   else if (!store.item) {
@@ -415,7 +423,7 @@ ideal <- function(object,
                  boutput=as.double(0),
                  as.integer(burnin),
                  as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose))
+                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
   }
   else {
     output <- .C("IDEAL",
@@ -428,7 +436,7 @@ ideal <- function(object,
                  xoutput=as.double(rep(0,n*d*numrec)),
                  boutput=as.double(rep(0,m*(d+1)*numrec)),as.integer(burnin),
                  as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose))
+                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
   }
 
   cat("\n")
