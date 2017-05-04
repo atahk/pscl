@@ -2,7 +2,7 @@ void usage();
 
 double check(double **data, int **ok, int n, int m);
 
-double dtnorm(double *mu, double *sd, double *y);
+double dtnorm(const double mu, const double sd, const double y);
 
 void updatex(double **ystar, int **ok, double **beta, 
 	     double **x, double **xp, double **xpv,

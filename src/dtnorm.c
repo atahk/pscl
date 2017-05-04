@@ -11,57 +11,36 @@
 #include <Rmath.h>
 #include "util.h"
 
-static double zero = 0.0;
-static double arg = 0.5;
-static double iarg = 0.5;
-static double pupper = 0.5;
-static double one = 1.0;
-
-
-double dtnorm(double *mu, double *sd, double *y)
+double dtnorm_std(const double lower_bound)
 {
-  double f, z;
-  double norm=0;
-  
-  if (*y==0.0){
-    z = *mu/(*sd);
-    if(z<1.6){
-      /* try rejection sampling */
+  double y;
+  if (lower_bound < 0.0)
+    {
       do {
-	norm = rnorm(*mu, *sd);
-      } while (norm >= 0.0);
+	y = norm_rand();
+      } while (y <= lower_bound);
+      return y;
     }
-    else{
-      /* otherwise use inverse-uniform method, z is always positive */
-      /* work with natural logarithms to avoid underflows */
-      f = -exp_rand();
-      
-      pupper = pnorm(z,zero,one,0,1);
-      arg = f + pupper;
-      iarg = qnorm(arg,zero,one,1,1);
+  else if (lower_bound < 0.75)
+    {
+      do {
+	y = fabs(norm_rand());
+      } while (y <= lower_bound);
+      return y;
+    }
+  else
+    {
+      do {
+	y = exp_rand();
+      } while (exp_rand() * lower_bound * lower_bound <= 0.5 * y * y);
+      return y / lower_bound + lower_bound;
+    }
+}
 
-      norm = *mu + (*sd)*iarg;
-    }
-  }
-  else{  /* Y=1 */
-    /* try rejection sampling */
-    z = *mu/(*sd);
-    if(z>-1.6){
-	    do {
-		    norm = rnorm(*mu, *sd);
-	    } while (norm <= 0.0);
-    }
-    else{
-      /* otherwise use inverse-uniform method, n.b., z is always neg */
-      /* work with natural logarithms to avoid underflows */
-      f = -exp_rand();
-
-      pupper = pnorm(z,zero,one,1,1);
-      arg = f + pupper;
-      iarg = qnorm(arg,zero,one,0,1);
-
-      norm = *mu + (*sd)*iarg;
-    }
-  }
-  return(norm);
+double dtnorm(const double mu, const double sd, const double y)
+{
+  if (y <= 0.0)
+    return mu - sd * dtnorm_std(mu / sd);
+  else
+    return mu + sd * dtnorm_std(- mu / sd);
 }
