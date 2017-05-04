@@ -1,0 +1,10 @@
+void memallerror(void);
+void calcerror(char error_text[]);
+int *ivector(long n);
+double *dvector(long n);
+double **dmatrix(long nr, long nc);
+int **imatrix(long nr, long nc);
+// void free_ivector(int *v);
+// void free_dvector(double *v);
+void free_dmatrix(double **m, long nr);
+void free_imatrix(int **m, long nr);

@@ -1,0 +1,24 @@
+rank ordering and inference with ideal output (11/14/2006; pauljtran@gmail.com)
+
+vignette and Sweave etc in doc directory (07/10/2006)
+
+easy generation of simulated roll call data (07/10/2006); but see wnominate::generateTestData
+
+Plot discrimination parameters against closeness of votes, lack of fit
+diagnostic (07/10/2006)
+
+Concatenating rollcall objects  (06/23/2006)
+
+Check for redundancies in roll calls (06/23/2006)
+
+Create a boxplot method for class ideal, ideal points by party (06/23/2006)
+
+Create a plot method for class rollcall (principal components) (06/23/2006)
+
+Other fitting options in ideal (principal components, NOMINATE)
+
+User-specified colors in plot.ideal
+More control of labels in plot.ideal
+
+Let users append additional MCMC output to an earlier run on the same
+data (add need some sanity checks for this)

@@ -1,0 +1,14 @@
+COPYRIGHT STATUS
+----------------
+
+This bulk of this code is
+
+  Copyright (C) 2006-2009 Simon Jackman
+
+The count data regression functionality in R/*hurdle* and R/*zeroinfl* is
+
+  Copyright (C) 2006-2008 Achim Zeileis
+
+All code is subject to the GNU General Public License, Version 2. See
+the file COPYING for the exact conditions under which you may
+redistribute it.
