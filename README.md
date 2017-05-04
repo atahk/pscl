@@ -16,7 +16,7 @@
 
 Most users should use latest stable release of the packge, which can be installed from [CRAN](https://cran.r-project.org/) by running
 ```R
-install.packages()
+install.packages("pscl")
 ```
 
 The development version can be installed directly from [GitHub](https://github.com/atahk/pscl) by running
