@@ -12,12 +12,12 @@
 ##}
 
 .onAttach <- function(...){
-  packageStartupMessage("Classes and Methods for R developed in the\n")
-  packageStartupMessage("Political Science Computational Laboratory\n")
-  packageStartupMessage("Department of Political Science\n")
-  packageStartupMessage("Stanford University\n")
-  packageStartupMessage("Simon Jackman\n")
-  packageStartupMessage("hurdle and zeroinfl functions by Achim Zeileis\n") 
+  packageStartupMessage("Classes and Methods for R developed in the\n",
+                        "Political Science Computational Laboratory\n",
+                        "Department of Political Science\n",
+                        "Stanford University\n",
+                        "Simon Jackman\n",
+                        "hurdle and zeroinfl functions by Achim Zeileis")
 }
 
 .onUnload <- function(libpath){
