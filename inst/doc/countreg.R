@@ -128,7 +128,7 @@ if(file.exists("countreg-models.rda")) {
 } else {
   fm_pois   <-      glm(ofp ~ ., data = dt, family = poisson)
   fm_qpois  <-      glm(ofp ~ ., data = dt, family = quasipoisson)
-  fm_nbin   <-   glm.nb(ofp ~ ., data = dt)
+  fm_nbin   <-   MASS::glm.nb(ofp ~ ., data = dt)
   fm_zinb0  <- zeroinfl(ofp ~ ., data = dt, dist = "negbin")
   fm_zinb   <- zeroinfl(ofp ~ . | hosp + numchron + privins + school + gender, data = dt, dist = "negbin")
   fm_hurdle0<-   hurdle(ofp ~ ., data = dt, dist = "negbin")
@@ -171,7 +171,7 @@ coeftest(fm_pois, vcov = sandwich)
 ###################################################
 ### code chunk number 19: nbin (eval = FALSE)
 ###################################################
-## fm_nbin <- glm.nb(ofp ~ ., data = dt)
+## fm_nbin <- MASS::glm.nb(ofp ~ ., data = dt)
 ## summary(fm_nbin)
 
 

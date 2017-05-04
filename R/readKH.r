@@ -60,7 +60,7 @@ readKH <- function(file,
   state <- as.numeric(substring(data,9,10))  ## icpsr code
   KHstateName <- substring(data,13,20)
   stateName <- statename(state)  ## covert to name
-  stateAbb <- state.abb[match(stateName,state.name)]  ## convert to abbrev
+  stateAbb <- datasets::state.abb[match(stateName,datasets::state.name)]  ## convert to abbrev
   stateAbb[grep(KHstateName,pattern="^USA")] <- "USA"  ## for presidents
 
   cd <- as.numeric(substring(data,11,12))

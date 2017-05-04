@@ -164,7 +164,7 @@ data("bioChemists", package = "pscl")
 ## ("art ~ ." is "art ~ fem + mar + kid5 + phd + ment")
 fm_pois <- glm(art ~ ., data = bioChemists, family = poisson)
 fm_qpois <- glm(art ~ ., data = bioChemists, family = quasipoisson)
-fm_nb <- glm.nb(art ~ ., data = bioChemists)
+fm_nb <- MASS::glm.nb(art ~ ., data = bioChemists)
 
 ## with simple inflation (no regressors for zero component)
 fm_zip <- zeroinfl(art ~ . | 1, data = bioChemists)

@@ -1,13 +1,3 @@
-1. Put any C/C++/Fortran code in 'src'
-2. If you have compiled code, add a .First.lib() function in 'R'
-   to load the shared library
-3. Edit the help file skeletons in 'man'
-4. Run R CMD build to create the index files
-5. Run R CMD check to check the package
-6. Run R CMD build to make the package file
+# Political Science Computational Laboratory
 
-when building on the Mac, can remove resource forks as follows:
-
-find . -type f -exec cp /dev/null {}/..namedfork/rsrc \;
-
-Read "Writing R Extensions" for more information.
+R classes and methods for the Bayesian analysis of roll call data (item-response models); elementary Bayesian statistics; maximum likelihood estimation of zero-inflated and hurdle models for count data; utility functions.

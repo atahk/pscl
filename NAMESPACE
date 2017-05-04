@@ -27,11 +27,21 @@ export("seatsVotes", "plot.seatsVotes")
 
 export("hitmiss", "pR2")
 
-importFrom("MASS", "glm.nb")
-importFrom("MASS", "polr")
-importFrom("lattice","xyplot")
-importFrom("lattice","panel.lines")
-importFrom("stats", "logLik")
+importFrom("MASS", "glm.nb", "polr")
+importFrom("grDevices", "dev.interactive", "gray", "rainbow")
+importFrom("graphics", "abline", "axis", "layout", "legend", "lines",
+           "mtext", "pairs", "par", "plot", "points", "polygon", "rug",
+           "text", "title")
+importFrom("stats", ".getXlevels", "AIC", "binomial", "coef", "cor",
+           "dbeta", "delete.response", "density", "dnbinom", "dpois",
+           "family", "glm", "glm.fit", "lm", "loess", "logLik",
+           "make.link", "model.frame", "model.matrix", "model.response",
+           "model.weights", "na.omit", "na.pass", "optim", "optimize",
+           "pbeta", "pchisq", "pgamma", "pnbinom", "pnorm", "poisson",
+           "ppois", "predict", "printCoefmat", "qbeta", "qchisq",
+           "qgamma", "quantile", "residuals", "rgamma", "rnorm", "sd",
+           "terms", "uniroot", "update")
+importFrom("utils", "tail")
 
 ## methods for class zeroinfl
   S3method("print", "zeroinfl")

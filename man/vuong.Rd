@@ -55,7 +55,7 @@ vuong(glm1, zip)
 
 \dontrun{
 ## compare negbin with zero-inflated negbin
-nb1 <- glm.nb(art ~ ., data=bioChemists)
+nb1 <- MASS::glm.nb(art ~ ., data=bioChemists)
 zinb <- zeroinfl(art ~ . | ., data = bioChemists, dist = "negbin", EM = TRUE)
 vuong(nb1, zinb)
 }

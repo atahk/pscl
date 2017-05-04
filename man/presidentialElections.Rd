@@ -30,13 +30,15 @@
   
 \examples{
 data(presidentialElections)
-lattice::xyplot(demVote ~ year | state,
-       panel=panel.lines,
+if(require(lattice)) {
+    lattice::xyplot(demVote ~ year | state,
+       panel=lattice::panel.lines,
        ylab="Democratic Vote for President (percent)",
        xlab="Year",
        data=presidentialElections,
        scales=list(y=list(cex=.6),x=list(cex=.35)),
        strip=strip.custom(par.strip.text=list(cex=.6)))
+}
 
 ## Obama vs Kerry, except DC
 y08 <- presidentialElections$year==2008

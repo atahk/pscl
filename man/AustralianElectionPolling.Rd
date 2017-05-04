@@ -42,12 +42,14 @@ The ALP changed leaders twice in the 2004-07 inter-election period spanned by th
 }
 \examples{
 data(AustralianElectionPolling)
-lattice::xyplot(ALP ~ startDate | org, 
+if(require(lattice)) {
+    lattice::xyplot(ALP ~ startDate | org, 
        data=AustralianElectionPolling,
        layout=c(1,5),
        type="b",
        xlab="Start Date",
        ylab="ALP")
+}
 
 ## test for house effects
 y <- AustralianElectionPolling$ALP/100
