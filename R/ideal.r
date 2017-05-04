@@ -449,7 +449,6 @@ ideal <- function(object,
     keep <- itervec > burnin
 
     ## ideal points
-    print(output$xoutput[1:(n*d)])
     x <- array(output$xoutput,
                c(n,d,numrec))
     
@@ -467,7 +466,6 @@ ideal <- function(object,
     ###############################################################
     ## item parameters
     if(store.item){
-      print(vote.names)
       b <- array(output$boutput,c(m,d+1,numrec))  ## votes by parameters by iters
       dimnames(b) <- list(vote.names,
                           c(paste("Discrimination D",1:d,sep=""),
