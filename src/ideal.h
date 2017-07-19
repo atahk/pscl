@@ -1,6 +1,7 @@
-void usage();
-
 double check(double **data, int **ok, int n, int m);
+
+double**dvecTOdmat(double *vtr, double **dmtrx, int rows, int columns);
+double *dmatTOdvec(double *vtr, double **dmtrx, int rows, int columns);
 
 double dtnorm(const double mu, const double sd, const double y);
 

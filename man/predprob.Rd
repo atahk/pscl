@@ -27,7 +27,7 @@ predprob(obj, \dots)
   (i.e., \code{min(y):max(y)}), conditional on the values of covariates. 
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{predprob.glm}}, \code{\link{predprob.zeroinfl}}}
 

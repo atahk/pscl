@@ -24,7 +24,7 @@
   A \code{\link{matrix}} of dimension \code{n} (number of legislators)
   by \code{m} (number of roll call votes).
 }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \seealso{\code{\link{ideal}}, \code{\link{predprob}}, \code{\link{predict.ideal}}}
 \examples{
 f <- system.file("extdata","id1.rda",package="pscl")

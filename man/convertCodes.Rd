@@ -24,7 +24,7 @@ convertCodes(object, codes = object$codes)
 }
 \value{a \code{\link{matrix}} with dimensions equal to the dimensions of
   the \code{votes} component of the \code{rollcall} object.} 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \note{Any entries in the \code{votes} matrix that can
   not be mapped into \code{c(0,1,NA)} using the information in
   \code{codes} are mapped to \code{NA}, with an informative message

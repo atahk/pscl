@@ -45,7 +45,7 @@ hitmiss(obj, digits = max(3, getOption("digits") - 3), ...)
   \item{pcp1}{Percent Correctly Predicted among y=1}
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \note{To-do: The \code{glm} method should also handle binomial data presented
   as two-vector success/failures counts; and count data with

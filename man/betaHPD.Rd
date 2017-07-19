@@ -89,7 +89,7 @@
   Debugging messages are printed to the console if the \code{debug}
   logical flag is set to \code{TRUE}.  
 }
-\author{Simon Jackman \email{jackman@stanford.edu}.  Thanks to John
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}.  Thanks to John
   Bullock who discovered a bug in an earlier version.}
 \seealso{\code{\link{pbeta}}, \code{\link{qbeta}},
   \code{\link{dbeta}}, \code{\link{uniroot}}}

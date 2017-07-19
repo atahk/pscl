@@ -34,7 +34,7 @@ simpi(n)
 \references{Ripley, Brain D. 1987 [2006].  \emph{Stochastic Simulation}.
   Wiley: Hoboken, New Jersey.}
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \examples{
 seed <- round(pi*10000)  ## hah hah hah

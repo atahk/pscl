@@ -35,7 +35,7 @@
   A \code{\link{rollcall}} object or a \code{\link{matrix}} depending on
   the class of \code{object}.
 }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \seealso{\code{\link{dropRollCall}},
   \code{\link{rollcall}}, \code{\link{summary.rollcall}}, \code{\link{ideal}}}
 \examples{

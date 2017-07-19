@@ -344,7 +344,7 @@ ideal(object, codes = object$codes,
   Graphical Statistics}. 10(1):1-111.
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}, with help from Christina
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}, with help from Christina
   Maimone and Alex Tahk.}
 
 \seealso{

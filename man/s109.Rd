@@ -19,12 +19,12 @@
 
 \source{
   Keith Poole's web site:
-  \url{http://voteview.com/senate109.htm}
+  \url{https://legacy.voteview.com/senate109.htm}
 
   Originally scraped from the Senate's web site by Jeff Lewis (UCLA).
   
   Information identifying the votes is available at
-  \url{ftp://voteview.com/dtaord/s109desc_final.csv}
+  \url{https://voteview.com/static/data/out/rollcalls/S109_rollcalls.csv}
 }
 
 \examples{
@@ -37,10 +37,10 @@ summary(s109,verbose=TRUE)
 \dontrun{
 ## how s109 was created
 require(pscl)
-s109 <- readKH("ftp://voteview.com/dtaord/sen109kh.ord",
+s109 <- readKH("https://voteview.com/static/data/out/votes/S109_votes.ord",
                desc="109th U.S. Senate",
                debug=TRUE)
-url <- "ftp://voteview.com/dtaord/s109desc_final.csv"
+url <- "https://voteview.com/static/data/out/rollcalls/S109_rollcalls.csv"
 
 s109$vote.data <- data.frame(read.csv(file=url,header=TRUE))
 s109$vote.data$date <- as.Date(s109$vote.data$date,

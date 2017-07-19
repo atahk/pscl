@@ -22,5 +22,5 @@
   into strings, via a table lookup in this data frame.}
 \seealso{\code{\link{readKH}}
 }
-\source{Keith Poole's website: \url{http://voteview.com/PARTY3.HTM}}
+\source{Keith Poole's website: \url{http://legacy.voteview.com/PARTY3.HTM}}
 \keyword{datasets}

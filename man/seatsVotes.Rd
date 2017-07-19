@@ -70,7 +70,7 @@ seatsVotes(x, desc = NULL, method = "uniformSwing")
    1949-93. \emph{British Journal of Political Science}. 24(3):319-357.
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \note{Additional methods to come later.}
 
 \seealso{\code{\link{plot.seatsVotes}} for plotting methods.}

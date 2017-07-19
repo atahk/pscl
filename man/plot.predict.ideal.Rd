@@ -37,7 +37,7 @@
   After drawing plots on the current device, exits silently returning \code{invisible(NULL)}.
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{predict.ideal}} \code{\link{ideal}} }
 

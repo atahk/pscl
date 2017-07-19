@@ -24,7 +24,7 @@ extractRollCallObject(object)
 \value{
   An object of class \code{\link{rollcall}}
 }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \seealso{\code{\link{rollcall}}; see \code{\link{dropRollCall}} for
   details on the form of a \code{dropList}.}
 \examples{

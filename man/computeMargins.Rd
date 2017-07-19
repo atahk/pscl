@@ -38,7 +38,7 @@ computeMargins(object, dropList = NULL)
   roll call}
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{dropRollCall}} on specifying a \code{dropList}.
   The vote-specific marginals produced by theis function are used by as

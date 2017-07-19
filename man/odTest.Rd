@@ -52,7 +52,7 @@ odTest(glmobj, alpha=.05, digits = max(3, getOption("digits") - 3))
   Regressions. \emph{The Canadian Journal of Statistics}. 15:209-225.
  }
 
-  \author{Simon Jackman \email{jackman@stanford.edu}.  John Fox noted an
+  \author{Simon Jackman \email{simon.jackman@sydney.edu.au}.  John Fox noted an
   error in an earlier version.}
 
 \seealso{\code{\link[MASS:glm.nb]{glm.nb}}, \code{\link{logLik}}}

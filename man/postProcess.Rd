@@ -126,7 +126,7 @@ Rivers, Douglas. 2003.  \dQuote{Identification of Multidimensional
 Stanford University.
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \note{Applying transformations to obtain identification can
   sometimes lead to surprising results.  Each data point makes the same

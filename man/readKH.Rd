@@ -90,7 +90,7 @@ readKH(file,
     \item{\code{partyName}}{character string, the name of each legislator's
       political party}
     \item{\code{party}}{numeric, code for each legislator's political
-      party; see \url{http://voteview.com/PARTY3.HTM}}
+      party; see \url{http://legacy.voteview.com/PARTY3.HTM}}
   }
   The \code{\link{rownames}} attribute of this data frame is a
   concatenation of the legislators' names, party abbreviations (for
@@ -133,7 +133,7 @@ readKH(file,
   Political-Economic History of Roll Call Voting}.  New York: Oxford
   University Press.  
 
-Poole, Keith.  \url{http://votevieW.COM}
+Poole, Keith.  \url{http://legacy.voteview.com}
 
 Rosenthal, Howard L. and Keith T. Poole.  \emph{United States Congressional
 Roll Call Voting Records, 1789-1990: Reformatted Data [computer
@@ -149,13 +149,13 @@ Consortium for Political and Social Research [distributor], 2000.
 
 \examples{
 \dontrun{
-h107 <- readKH("ftp://voteview.com/hou107kh.ord",
+h107 <- readKH("https://voteview.com/static/data/out/votes/H107_votes.ord",
                 desc="107th U.S. House of Representatives")
 
-s107 <- readKH("ftp://voteview.com/sen107kh.ord",
+s107 <- readKH("https://voteview.com/static/data/out/votes/S107_votes.ord",
                 desc="107th U.S. Senate")
 }
 }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \keyword{datasets}
 

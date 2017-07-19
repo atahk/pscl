@@ -35,7 +35,7 @@ pR2(object, ...)
 }
 \references{Long, J. Scott. 1997. \emph{Regression Models for Categorical and
   Limited Dependent Variables}.  Sage.  pp104-106.}
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{extractAIC}}, \code{\link{logLik}}}
 \examples{

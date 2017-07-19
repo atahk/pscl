@@ -86,7 +86,7 @@
 
 \seealso{\code{\link{ideal}}}
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \examples{
 f <- system.file("extdata","id1.rda",package="pscl")

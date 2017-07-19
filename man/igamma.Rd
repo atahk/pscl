@@ -102,7 +102,7 @@
   (the derivative of the \code{gamma} function).
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{gamma}}, \code{\link{dgamma}},
 \code{\link{pgamma}}, \code{\link{qgamma}}, \code{\link{uniroot}}}

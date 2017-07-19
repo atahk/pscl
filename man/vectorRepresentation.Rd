@@ -43,7 +43,7 @@ vectorRepresentation(object, dropList = list(codes = c("missing", "notInLegis"))
   \item{j}{the column of the roll call matrix \code{object$votes} that
     supplied the \code{vote}; i.e., a unique identifier for the vote.}
 }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \seealso{\code{\link{rollcall}}}
 \examples{
 data(s109)

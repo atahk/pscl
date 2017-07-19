@@ -61,7 +61,7 @@ dropRollCall(object, dropList,debug=FALSE)
   An object of class \code{\link{rollcall}} with components modified/added by
   the subsetting indicated in the \code{dropList}.
   }
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \note{
   With the exception of \code{codes}, each component of

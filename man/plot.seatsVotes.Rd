@@ -58,7 +58,7 @@
   \code{invisible{NULL}}.
 }
 
-\author{Simon Jackman \email{jackman@stanford.edu}}
+\author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 \seealso{\code{\link{density}}, \code{\link{rug}}}
 \examples{
 data(ca2006)

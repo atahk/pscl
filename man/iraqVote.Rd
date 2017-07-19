@@ -25,7 +25,7 @@
   resolution.
 }
 \source{
-	Keith Poole, 107th Senate Roll Call Data. \url{ftp://voteview.com/sen107kh.ord}  The Iraq vote is vote number 617.
+	Keith Poole, 107th Senate Roll Call Data. \url{https://voteview.com/static/data/out/votes/S107_votes.ord}  The Iraq vote is vote number 617.
 
 	David Leip's Atlas of U.S. Presidential Elections.  \url{http://uselectionatlas.org} 
 }

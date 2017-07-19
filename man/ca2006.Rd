@@ -31,8 +31,8 @@
 }
 
 \source{2006 data from the California Secretary of State's web site,
-  \url{http://vote2006.sos.ca.gov/Returns/usrep/all.htm}. 
-  %%Excel data at \url{http://www.sos.ca.gov/elections/sov/2006_general/congress.xls}. 
+  \url{http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-november-7-2006/statement-vote/}. 
+  %%Excel data at \url{http://elections.cdn.sos.ca.gov/sov/2006-general/congress.xls}. 
    2004 and 2000 presidential vote in congressional districts from the 2006 \emph{Almanac of American Politics}.
 
 Thanks to Arthur Aguirre for the updated links, above.

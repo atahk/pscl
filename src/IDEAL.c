@@ -9,9 +9,6 @@
 #include "util.h"
 #include "ideal.h"
 
-double**dvecTOdmat(double *vtr, double **dmtrx, int rows, int columns);
-double *dmatTOdvec(double *vtr, double **dmtrx, int rows, int columns);
-
 double *xxprod, **xxchol;
 double *xz;
 double *bxprod, **bchol;
