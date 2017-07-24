@@ -1,4 +1,6 @@
 1.5.1 * AustralianElections includes 2010,2013,2016
+  * presidentialElections includes 2016 and 2012 Alabama result
+  * Manual updated to reflect changes
 
 1.5.0	* improved truncated normal sampling (15-20% faster)
 	* added use.voter option to ideal, implementing approach from
