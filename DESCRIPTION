@@ -3,7 +3,7 @@ Version: 1.5.1
 Date: 2017-07-19
 Title: Political Science Computational Laboratory
 Author: Simon Jackman, with contributions from
-        Alex Tahk, Achim Zeileis, Christina Maimone and Jim Fearon
+        Alex Tahk, Achim Zeileis, Christina Maimone, Jim Fearon and Zoe Meers
 Maintainer: Simon Jackman <simon.jackman@sydney.edu.au>
 Imports: MASS, datasets, grDevices, graphics, stats, utils
 Suggests: lattice, MCMCpack, car, lmtest, sandwich, zoo, coda, vcd, mvtnorm,
