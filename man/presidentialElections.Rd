@@ -1,21 +1,21 @@
 \name{presidentialElections}
 \alias{presidentialElections}
 \docType{data}
-\title{elections for U.S. President, 1932-2012, by state}
+\title{elections for U.S. President, 1932-2016, by state}
 
 \description{
   Democratic share of the
-  presidential vote, 1932-2012, in each state and the District of Columbia.}
+  presidential vote, 1932-2016, in each state and the District of Columbia.}
 
 \usage{data(presidentialElections)}
 
 \format{
   \itemize{
-    \item{state}{character, name of state}
-    \item{demVote}{numeric, percent of the vote for president won by the
+    \item{\code{state}}{character, name of state}
+    \item{\item{demVote}}{numeric, percent of the vote for president won by the
       Democratic candidate}
-    \item{year}{numeric, integer}
-    \item{south}{logical, \code{TRUE} if state is one of the 11 states
+    \item{\item{year}}{numeric, integer}
+    \item{\item{south}}{logical, \code{TRUE} if state is one of the 11 states
       of the former Confederacy}
   }
 }
@@ -25,7 +25,7 @@
   from 1964 onward; Alabama has missing data for 1948 and
   1964.}
 
-\source{David Leip's Atlas of U.S. Presidential Elections \url{http://uselectionatlas.org}
+\source{David Leip's Atlas of U.S. Presidential Elections \url{uselectionatlas.org}
 }
   
 \examples{

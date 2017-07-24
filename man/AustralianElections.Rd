@@ -2,11 +2,11 @@
 \alias{AustralianElections}
 \docType{data}
 \title{elections to Australian House of
-  Representatives, 1949-2007}
+  Representatives, 1949-2016}
 
 \description{
   Aggregate data on the 24 elections to Australia's House of
-  Representatives, 1949 to 2007. 
+  Representatives, 1949 to 2016. 
 }
 
 \usage{data(AustralianElections)}
@@ -53,6 +53,8 @@
       as having turned out to vote (Australia has compulsory voting)}
   }
 }
+
+\note{The Liberal National Party of Queensland formed in 2008 after a merger of the Liberal Party and the National Party. In all elections following 2008, they have been categorised under \code{LP}.}
 
 \source{Australian Electoral Commission. \url{http://www.aec.gov.au}.
 }
