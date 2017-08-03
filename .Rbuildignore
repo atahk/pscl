@@ -1,3 +1,5 @@
 LICENSE
 README.md
 cran-comments.md
+^.*\.Rproj$
+^\.Rproj\.user$
