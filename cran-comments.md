@@ -10,3 +10,4 @@ There were no ERRORs, NOTES, or WARNINGs.
 ## Downstream dependencies
 I have also run R CMD check on downstream dependencies of pscl.
 All packages that I could install passed.
+https://github.com/atahk/pscl/tree/master/revdep
