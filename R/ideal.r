@@ -400,30 +400,57 @@ ideal <- function(object,
     cat("\n", file=file, append=TRUE)
     output <- .C("IDEAL",
                  PACKAGE=.package.Name,
-                 as.integer(n), as.integer(m), as.integer(d), as.double(yToC), 
-                 as.integer(maxiter), as.integer(thin), as.integer(impute),
-                 as.integer(mda),
-                 as.double(xp), as.double(xpv), as.double(bp),
-                 as.double(bpv), as.double(xstart), as.double(bstart),
-                 xoutput=NULL,
-                 boutput=NULL,as.integer(burnin),
-                 as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
+                 as.integer(n),           #1
+                 as.integer(m),           #2
+                 as.integer(d),           #3
+                 as.double(yToC),         #4
+                 as.integer(maxiter),     #5
+                 as.integer(thin),        #6
+                 as.integer(impute),      #7
+                 as.integer(mda),         #8
+                 as.double(xp),           #9
+                 as.double(xpv),          #10
+                 as.double(bp),           #11
+                 as.double(bpv),          #12
+                 as.double(xstart),       #13
+                 as.double(bstart),       #14
+                 xoutput=0,               #15
+                 boutput=0,               #16
+                 as.integer(burnin),      #17
+                 usefile,                 #18
+                 as.logical(store.item),              #19
+                 as.character(file),      #20
+                 as.logical(verbose),     #21
+                 as.logical(!is.null(use.voter)),   #22 
+                 as.integer(use.voter))   #23
   }
   ## not saving output to file, saving output to memory
   else if (!store.item) {
     output <- .C("IDEAL",
                  PACKAGE=.package.Name,
-                 as.integer(n), as.integer(m), as.integer(d), as.double(yToC), 
-                 as.integer(maxiter), as.integer(thin), as.integer(impute),
+                 as.integer(n), 
+                 as.integer(m), 
+                 as.integer(d), 
+                 as.double(yToC), 
+                 as.integer(maxiter), 
+                 as.integer(thin), 
+                 as.integer(impute),
                  as.integer(mda),
-                 as.double(xp), as.double(xpv), as.double(bp),
-                 as.double(bpv), as.double(xstart), as.double(bstart),
+                 as.double(xp), 
+                 as.double(xpv), 
+                 as.double(bp),
+                 as.double(bpv), 
+                 as.double(xstart), 
+                 as.double(bstart),
                  xoutput=as.double(rep(0,n*d*numrec)),
-                 boutput=as.double(0),
+                 boutput=as.double(rep(0,m*(d+1)*numrec)),
                  as.integer(burnin),
-                 as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
+                 usefile, 
+                 as.logical(store.item), 
+                 as.character(file),
+                 as.logical(verbose), 
+                 as.logical(!is.null(use.voter)), 
+                 as.integer(use.voter))
   }
   else {
     output <- .C("IDEAL",
@@ -434,9 +461,14 @@ ideal <- function(object,
                  as.double(xp), as.double(xpv), as.double(bp),
                  as.double(bpv), as.double(xstart), as.double(bstart),
                  xoutput=as.double(rep(0,n*d*numrec)),
-                 boutput=as.double(rep(0,m*(d+1)*numrec)),as.integer(burnin),
-                 as.integer(usefile), as.integer(store.item), as.character(file),
-                 as.integer(verbose), as.integer(!is.null(use.voter)), as.integer(use.voter))
+                 boutput=as.double(rep(0,m*(d+1)*numrec)), 
+                 as.integer(burnin),
+                 usefile, 
+                 as.logical(store.item), 
+                 as.character(file),
+                 as.logical(verbose), 
+                 as.logical(!is.null(use.voter)), 
+                 as.integer(use.voter))
   }
 
   cat("\n")

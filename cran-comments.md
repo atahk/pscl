@@ -1,5 +1,5 @@
 ## Test environments
-* local OS X 10.12 install, R 3.4.1
+* local OS X 10.13.1 install, R 3.5.0 svn rev 73498
 * local Ubuntu 17.04, R 3.4.1
 * local Windows 7, R 3.4.1
 

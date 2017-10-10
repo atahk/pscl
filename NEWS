@@ -1,3 +1,5 @@
+1.5.2 * fixed bugs in calls to C routines in ideal.R
+
 1.5.1 * AustralianElections includes 2010,2013,2016
   * presidentialElections includes 2016 and 2012 Alabama result
   * Manual updated to reflect changes
