@@ -425,7 +425,7 @@ ideal <- function(object,
                  as.integer(use.voter))   #23
   }
   ## not saving output to file, saving output to memory
-  else if (!store.item) {
+  else if (!store.item) {   ## but not saving item parameters
     output <- .C("IDEAL",
                  PACKAGE=.package.Name,
                  as.integer(n), 
@@ -443,7 +443,7 @@ ideal <- function(object,
                  as.double(xstart), 
                  as.double(bstart),
                  xoutput=as.double(rep(0,n*d*numrec)),
-                 boutput=as.double(rep(0,m*(d+1)*numrec)),
+                 boutput=0,
                  as.integer(burnin),
                  usefile, 
                  as.logical(store.item), 
