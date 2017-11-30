@@ -45,8 +45,11 @@ hurdle(formula, data, subset, na.action, weights, offset,
   modeling the occurence of zeros is exceeded. The count model is typically
   a truncated Poisson or negative binomial regression (with log link).
   The geometric distribution is a special case of the negative binomial with
-  size parameter equal to 1. For modeling the hurdle (occurence of positive
-  counts) either a binomial model can be employed or a censored count distribution.
+  size parameter equal to 1. For modeling the hurdle, either a binomial model
+  can be employed or a censored count distribution. The outcome of the hurdle
+  component of the model is the occurence of a non-zero (positive) count.
+  Thus, for most models, positive coefficients in the hurdle component indicate
+  that an increase in the regressor increases the probability of a non-zero count.
   Binomial logit and censored geometric models as the hurdle part both lead to 
   the same likelihood function and thus to the same coefficient estimates.
   A censored negative binomial model for the zero hurdle is only identified
