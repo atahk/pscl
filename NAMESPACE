@@ -35,12 +35,13 @@ importFrom("graphics", "abline", "axis", "layout", "legend", "lines",
 importFrom("stats", ".getXlevels", "AIC", "binomial", "coef", "cor",
            "dbeta", "delete.response", "density", "dnbinom", "dpois",
            "family", "glm", "glm.fit", "lm", "loess", "logLik",
-           "make.link", "model.frame", "model.matrix", "model.response",
-           "model.weights", "na.omit", "na.pass", "optim", "optimize",
-           "pbeta", "pchisq", "pgamma", "pnbinom", "pnorm", "poisson",
-           "ppois", "predict", "printCoefmat", "qbeta", "qchisq",
-           "qgamma", "quantile", "residuals", "rgamma", "rnorm", "sd",
-           "terms", "uniroot", "update")
+           "make.link", "model.frame", "model.matrix",
+           "model.response", "model.weights", "na.omit", "na.pass",
+           "nobs", "optim", "optimize", "pbeta", "pchisq", "pgamma",
+           "pnbinom", "pnorm", "poisson", "ppois", "predict",
+           "printCoefmat", "qbeta", "qchisq", "qgamma", "quantile",
+           "residuals", "rgamma", "rnorm", "sd", "terms", "uniroot",
+           "update")
 importFrom("utils", "tail")
 
 ## methods for class zeroinfl
@@ -104,6 +105,4 @@ importFrom("utils", "tail")
    S3method("hitmiss", "multinom")
 
 ## pR2 methods
-   S3method("pR2", "glm")
-   S3method("pR2", "polr")
-   S3method("pR2", "multinom")
+   S3method("pR2", "default")

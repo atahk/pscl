@@ -4,7 +4,9 @@ pR2 <- function(object,...){
   UseMethod("pR2")
 }
 
-pR2Work <- function(llh,llhNull,n){
+pR2Work <- function(llh,llhNull,n=NULL){
+  if (is.null(n))
+    n <- nobs(llh)
   McFadden <- 1 - llh/llhNull
   G2 <- -2*(llhNull-llh)
   r2ML <- 1 - exp(-G2/n)
@@ -19,29 +21,10 @@ pR2Work <- function(llh,llhNull,n){
   out      
 }
 
-pR2.glm <- function(object,...){
-  llh <- logLik(object)
-  objectNull <- update(object, ~ 1)
-  llhNull <- logLik(objectNull)
-  n <- dim(object$model)[1]
-  pR2Work(llh,llhNull,n)
-}
-
-pR2.polr <- function(object,...){
-  llh <- logLik(object)
-  objectNull <- update(object, ~ 1)
-  llhNull <- logLik(objectNull)
-  n <- object$nobs
-  pR2Work(llh,llhNull,n)
-}
-
-pR2.multinom <- function(object,...){
+pR2.default <- function(object,...){
   llh <- logLik(object)
   cat("fitting null model for pseudo-r2\n")
-  objectNull <- update(object, ~ 1)
+  objectNull <- update(object, ~ 1, data=model.frame(object))
   llhNull <- logLik(objectNull)
-  n <- dim(object$fitted.values)[1]
-  pR2Work(llh,llhNull,n)
+  pR2Work(llh,llhNull)
 }
-
-
