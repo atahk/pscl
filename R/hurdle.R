@@ -461,7 +461,7 @@ vcov.hurdle <- function(object, model = c("full", "count", "zero"), ...) {
 }
 
 logLik.hurdle <- function(object, ...) {
-  structure(object$loglik, df = object$n - object$df.residual, class = "logLik")
+  structure(object$loglik, df = object$n - object$df.residual, nobs = object$n, class = "logLik")
 }
 
 print.hurdle <- function(x, digits = max(3, getOption("digits") - 3), ...)
