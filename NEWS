@@ -1,4 +1,7 @@
 1.5.3	* fixed bug in pR2 when missing data is present
+	* added error handling when inverting Hessians in hurdle models
+	  and zero-inflated count models
+	* improved starting values in zero-inflated count models
 
 1.5.2	* fixed bugs in calls to C routines in ideal.R
 

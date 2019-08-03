@@ -322,8 +322,18 @@ hurdle <- function(formula, data, subset, na.action, weights, offset,
     theta <- c(count = if(dist == "negbin") as.vector(exp(fit_count$par[kx+1])) else NULL,
                zero = if(zero.dist == "negbin") as.vector(exp(fit_zero$par[kz+1])) else NULL)
     ## covariances
-    vc_count <- -solve(as.matrix(fit_count$hessian))
-    vc_zero <- -solve(as.matrix(fit_zero$hessian))
+    vc_count <- tryCatch(-solve(as.matrix(fit_count$hessian)),
+                         error=function(e) {
+                             warning(e$message, call=FALSE)
+                             k <- nrow(as.matrix(fit_count$hessian))
+                             return(matrix(NA, k, k))
+                         })
+    vc_zero <- tryCatch(-solve(as.matrix(fit_zero$hessian)),
+                        error=function(e) {
+                            warning(e$message, call=FALSE)
+                            k <- nrow(as.matrix(fit_zero$hessian))
+                            return(matrix(NA, k, k))
+                        })
     SE.logtheta <- list()
     if(dist == "negbin") {
       SE.logtheta$count <- as.vector(sqrt(diag(vc_count)[kx+1]))
@@ -349,7 +359,12 @@ hurdle <- function(formula, data, subset, na.action, weights, offset,
     coefc <- fit$par[1:kx]
     coefz <- fit$par[(kx + (dist == "negbin") + 1):(kx + kz + (dist == "negbin"))]
     ## covariances
-    vc <- -solve(as.matrix(fit$hessian))
+    vc <- tryCatch(-solve(as.matrix(fit$hessian)),
+                   error=function(e) {
+                       warning(e$message, call=FALSE)
+                       k <- nrow(as.matrix(fit$hessian))
+                       return(matrix(NA, k, k))
+                   })
     np <- c(if(dist == "negbin") kx+1 else NULL,
             if(zero.dist == "negbin") kx+kz+1+(dist == "negbin") else NULL)
     if(length(np) > 0) {
@@ -548,7 +563,7 @@ print.summary.hurdle <- function(x, digits = max(3, getOption("digits") - 3), ..
     cat(paste("Zero hurdle model coefficients (", zero_dist, "):\n", sep = ""))
     printCoefmat(x$coefficients$zero, digits = digits, signif.legend = FALSE)
     
-    if(getOption("show.signif.stars") & any(rbind(x$coefficients$count, x$coefficients$zero)[,4] < 0.1))
+    if(getOption("show.signif.stars") & any(rbind(x$coefficients$count, x$coefficients$zero)[,4] < 0.1, na.rm=TRUE))
       cat("---\nSignif. codes: ", "0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1", "\n")
 
     if(!is.null(x$theta)) cat(paste("\nTheta:", paste(names(x$theta), round(x$theta, digits), sep = " = ", collapse = ", ")))
