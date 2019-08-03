@@ -5,26 +5,34 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
 		     model = TRUE, y = TRUE, x = FALSE, ...)
 {
   ## set up likelihood
-  ziPoisson <- function(parms) {
+  ziPoisson <- function(parms, trunc.start=FALSE) {
     ## count mean
     mu <- as.vector(exp(X %*% parms[1:kx] + offsetx))
     ## binary mean
-    phi <- as.vector(linkinv(Z %*% parms[(kx+1):(kx+kz)] + offsetz))
+    if (trunc.start)
+      phi <- rep(0, length(mu))
+    else
+      phi <- as.vector(linkinv(Z %*% parms[(kx+1):(kx+kz)] + offsetz))
     
     ## log-likelihood for y = 0 and y >= 1
     loglik0 <- log( phi + exp( log(1-phi) - mu ) ) ## -mu = dpois(0, lambda = mu, log = TRUE)
     loglik1 <- log(1-phi) + dpois(Y, lambda = mu, log = TRUE)
     
     ## collect and return
-    loglik <- sum(weights[Y0] * loglik0[Y0]) + sum(weights[Y1] * loglik1[Y1])
-    loglik
+    if (trunc.start)
+      sum(weights[Y1] * loglik1[Y1]) - sum(weights[Y1] * log(1 - exp(loglik0[Y1])))
+    else
+      sum(weights[Y0] * loglik0[Y0]) + sum(weights[Y1] * loglik1[Y1])
   }
   
-  ziNegBin <- function(parms) {
+  ziNegBin <- function(parms, trunc.start=FALSE) {
     ## count mean
     mu <- as.vector(exp(X %*% parms[1:kx] + offsetx))
     ## binary mean
-    phi <- as.vector(linkinv(Z %*% parms[(kx+1):(kx+kz)] + offsetz))
+    if (trunc.start)
+      phi <- rep(0, length(mu))
+    else
+      phi <- as.vector(linkinv(Z %*% parms[(kx+1):(kx+kz)] + offsetz))
     ## negbin size
     theta <- exp(parms[(kx+kz)+1])
     
@@ -33,12 +41,46 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
     loglik1 <- log(1-phi) + suppressWarnings(dnbinom(Y, size = theta, mu = mu, log = TRUE))
 
     ## collect and return
-    loglik <- sum(weights[Y0] * loglik0[Y0]) + sum(weights[Y1] * loglik1[Y1])
-    loglik
+    if (trunc.start)
+      sum(weights[Y1] * loglik1[Y1]) - sum(weights[Y1] * log(1 - exp(loglik0[Y1])))
+    else
+      sum(weights[Y0] * loglik0[Y0]) + sum(weights[Y1] * loglik1[Y1])
   }
   
-  ziGeom <- function(parms) ziNegBin(c(parms, 0))
+  ziGeom <- function(parms, trunc.start=FALSE)
+    ziNegBin(c(parms, 0), trunc.start)
 
+  countGradPoisson <- function(parms) {
+    eta <- as.vector(X %*% parms[1:kx] + offsetx)[Y1]
+    mu <- exp(eta)
+    colSums(((Y[Y1] - mu) - exp(ppois(0, lambda = mu, log.p = TRUE) -
+      ppois(0, lambda = mu, lower.tail = FALSE, log.p = TRUE) + eta)) * weights[Y1] * X[Y1, , drop = FALSE])
+  }
+  
+  countGradGeom <- function(parms) {
+    eta <- as.vector(X %*% parms[1:kx] + offsetx)[Y1]
+    mu <- exp(eta)      
+    colSums(((Y[Y1] - mu * (Y[Y1] + 1)/(mu + 1)) -
+      exp(pnbinom(0, mu = mu, size = 1, log.p = TRUE) -
+        pnbinom(0, mu = mu, size = 1, lower.tail = FALSE, log.p = TRUE) -
+	log(mu + 1) + eta)) * weights[Y1] * X[Y1, , drop = FALSE])
+  }
+
+  countGradNegBin <- function(parms) {
+    eta <- as.vector(X %*% parms[1:kx] + offsetx)[Y1]
+    mu <- exp(eta)      
+    theta <- exp(parms[kx+1])
+    logratio <- pnbinom(0, mu = mu, size = theta, log.p = TRUE) -
+        pnbinom(0, mu = mu, size = theta, lower.tail = FALSE, log.p = TRUE)
+    rval <- colSums(((Y[Y1] - mu * (Y[Y1] + theta)/(mu + theta)) -
+      exp(logratio + log(theta) - log(mu + theta) + eta)) * weights[Y1] * X[Y1, , drop = FALSE])
+    rval2 <- sum((digamma(Y[Y1] + theta) - digamma(theta) +    
+      log(theta) - log(mu + theta) + 1 - (Y[Y1] + theta)/(mu + theta) +
+      exp(logratio) * (log(theta) - log(mu + theta) + 1 - theta/(mu + theta))) * weights[Y1]) * theta
+    c(rval, rval2)
+  }  
+
+    
   gradPoisson <- function(parms) {
     ## count mean
     eta <- as.vector(X %*% parms[1:kx] + offsetx)
@@ -237,16 +279,46 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
     }
     if(!valid) start <- NULL
   }
+
+  method <- control$method
+  hessian <- control$hessian
+  ocontrol <- control
+  control$method <- control$hessian <- control$EM <- control$start <- NULL
   
   if(is.null(start)) {
     if(control$trace) cat("generating starting values...")
-    model_count <- glm.fit(X, Y, family = poisson(), weights = weights, offset = offsetx)
     model_zero <- glm.fit(Z, as.integer(Y0), weights = weights, family = binomial(link = linkstr), offset = offsetz)
-    start <- list(count = model_count$coefficients, zero = model_zero$coefficients)
-    if(dist == "negbin") start$theta <- 1
+
+    countloglikfun <- function(parms)
+        loglikfun(c(parms[1:kx], rep(0, kz), parms[-(1:kx)]),
+                  trunc.start = TRUE)
+    countgradfun <- switch(dist,
+                      "poisson" = countGradPoisson,
+		      "geometric" = countGradGeom,
+		      "negbin" = countGradNegBin)
+
+    lmstart <- lm.wfit(X[Y1,,drop=FALSE],
+                       log(Y[Y1]) - offsetx[Y1],
+                       weights[Y1])$coefficients
+    lmstart <- ifelse(is.na(lmstart), 0, lmstart)
+
+    fit <- tryCatch(optim(fn = countloglikfun, gr = countgradfun,
+        par = c(lmstart, if(dist == "negbin") 0 else NULL),
+        method = method, hessian = FALSE, control = control),
+        error = function(e) list(convergence=1))
+
+    if(fit$convergence > 0) {
+        model_count <- glm.fit(X, Y, family = poisson(), weights = weights, offset = offsetx)
+        start <- list(count = model_count$coefficients, zero = model_zero$coefficients)
+        if(dist == "negbin") start$theta <- 1
+    } else {
+        start <- list(count = fit$par[1:kx], zero = model_zero$coefficients)
+        if (length(fit$par) > kx)
+            start$theta <- exp(fit$par[-(1:kx)])
+    }
 
     ## EM estimation of starting values
-    if(control$EM & dist == "poisson") {
+    if(ocontrol$EM & dist == "poisson") {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dpois(0, mui))
@@ -270,7 +342,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
 
-    if(control$EM & dist == "geometric") {
+    if(ocontrol$EM & dist == "geometric") {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = 1, mu = mui))
@@ -298,7 +370,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
 
-    if(control$EM & dist == "negbin") {
+    if(ocontrol$EM & dist == "negbin") {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = start$theta, mu = mui))
@@ -335,10 +407,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
 
   ## ML estimation
   if(control$trace) cat("calling optim() for ML estimation:\n")
-  method <- control$method
-  hessian <- control$hessian
-  ocontrol <- control
-  control$method <- control$hessian <- control$EM <- control$start <- NULL
+
   fit <- optim(fn = loglikfun, gr = gradfun,
     par = c(start$count, start$zero, if(dist == "negbin") log(start$theta) else NULL),
     method = method, hessian = hessian, control = control)
@@ -350,7 +419,13 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
   coefz <- fit$par[(kx+1):(kx+kz)]
   names(coefz) <- names(start$zero) <- colnames(Z)
 
-  vc <- -solve(as.matrix(fit$hessian))
+  vc <- tryCatch(-solve(as.matrix(fit$hessian)),
+                 error=function(e) {
+                     warning(e$message, call=FALSE)
+                     k <- nrow(as.matrix(fit$hessian))
+                     return(matrix(NA, k, k))
+                 })
+
   if(dist == "negbin") {
     np <- kx + kz + 1
     theta <- as.vector(exp(fit$par[np]))
@@ -516,7 +591,7 @@ print.summary.zeroinfl <- function(x, digits = max(3, getOption("digits") - 3), 
     cat(paste("\nZero-inflation model coefficients (binomial with ", x$link, " link):\n", sep = ""))
     printCoefmat(x$coefficients$zero, digits = digits, signif.legend = FALSE)
     
-    if(getOption("show.signif.stars") & any(rbind(x$coefficients$count, x$coefficients$zero)[,4] < 0.1))
+    if(getOption("show.signif.stars") & any(rbind(x$coefficients$count, x$coefficients$zero)[,4] < 0.1, na.rm=TRUE))
       cat("---\nSignif. codes: ", "0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1", "\n")
 
     if(x$dist == "negbin") cat(paste("\nTheta =", round(x$theta, digits), "\n")) else cat("\n")
