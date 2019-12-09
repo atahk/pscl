@@ -103,9 +103,9 @@ readKH(file,
   Congresses 1 through 106. These files contain information about the
   votes themselves, in a multiple-line per vote \code{ascii} format, and
   reside in the \code{dtl} director of Poole's web site, e.g.,
-  \url{ftp://pooleandrosenthal.com/dtl/102s.dtl} is the \code{dtl} file for
-  the 102nd Senate.  The default is to presume that no such file exists.
-  When a \code{dtl} file is available, and is read, the
+  \url{https://legacy.voteview.com/k7ftp/dtl/102s.dtl} is the \code{dtl}
+  file for the 102nd Senate.  The default is to presume that no such
+  file exists.  When a \code{dtl} file is available, and is read, the
   \code{votes.data} attribute of the resulting \code{\link{rollcall}}
   object is a \code{\link{data.frame}} with one record per vote, with
   the following variables:
