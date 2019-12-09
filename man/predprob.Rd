@@ -32,6 +32,7 @@ predprob(obj, \dots)
 \seealso{\code{\link{predprob.glm}}, \code{\link{predprob.zeroinfl}}}
 
 \examples{
+\dontrun{
 data("bioChemists")
 zip <- zeroinfl(art ~ . | ., data = bioChemists, EM = TRUE)
 phat <- predprob(zip)
@@ -40,6 +41,7 @@ newdata <- expand.grid(list(fem="Men",mar="Married",
                             kid5=1,phd=3.103,
                             ment=0:77))
 phat <- predprob(zip, newdata = newdata)
+}
 }
 \keyword{regression}
 \keyword{models}

@@ -94,7 +94,6 @@ rollcall <- function(data,
       rownames(legis.data) <- nm
   }
 
-  ## roll call votes attributes
   if(!is.null(vote.data)){
     if(nrow(vote.data)!=ncol(v))
       stop("rows in vote.data does not match number of votes in roll call matrix")
@@ -183,10 +182,13 @@ print.rollcall <- function(x,print.votes=FALSE, ...){
 
 ## check Votes
 checkVotes <- function(object,codes=object$codes){
-  if(class(object)=="rollcall")
+  if(class(object)[1]=="rollcall"){
     mat <- object$votes
-  if(class(object)=="matrix")
-    mat <- object
+  } else {
+    if("matrix" %in% class(object)) {
+      mat <- object
+    }
+  }
   if(is.null(codes))
     stop("checkVotes: no codes supplied")
   

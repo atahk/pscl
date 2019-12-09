@@ -47,13 +47,14 @@ vuong(m1, m2, digits = getOption("digits"))
 \author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \examples{
+\dontrun{
 data("bioChemists")
 ## compare Poisson GLM and ZIP
 glm1 <- glm(art ~ ., data = bioChemists, family = poisson)
 zip <- zeroinfl(art ~ . | ., data = bioChemists, EM = TRUE)
 vuong(glm1, zip)
 
-\dontrun{
+
 ## compare negbin with zero-inflated negbin
 nb1 <- MASS::glm.nb(art ~ ., data=bioChemists)
 zinb <- zeroinfl(art ~ . | ., data = bioChemists, dist = "negbin", EM = TRUE)
