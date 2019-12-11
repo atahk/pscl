@@ -1,7 +1,7 @@
 ## Test environments
-* local OS X 10.13.1 install, R 3.5.0 svn rev 73498
-* local Ubuntu 17.04, R 3.4.1
-* local Windows 7, R 3.4.1
+* local OS X 10.13.6 install, R 4.0.0 svn r77386
+* local Ubuntu 19.10, R 3.6.1
+* local Windows 7, R 3.6.1
 
 ## R CMD check results
 There were no ERRORs, NOTES, or WARNINGs. 
