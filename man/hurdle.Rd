@@ -42,12 +42,12 @@ hurdle(formula, data, subset, na.action, weights, offset,
   component for positive counts and a hurdle component that models the
   zero counts. Thus, unlike zero-inflation models, there are \emph{not} two
   sources of zeros: the count model is only employed if the hurdle for
-  modeling the occurence of zeros is exceeded. The count model is typically
+  modeling the occurrence of zeros is exceeded. The count model is typically
   a truncated Poisson or negative binomial regression (with log link).
   The geometric distribution is a special case of the negative binomial with
   size parameter equal to 1. For modeling the hurdle, either a binomial model
   can be employed or a censored count distribution. The outcome of the hurdle
-  component of the model is the occurence of a non-zero (positive) count.
+  component of the model is the occurrence of a non-zero (positive) count.
   Thus, for most models, positive coefficients in the hurdle component indicate
   that an increase in the regressor increases the probability of a non-zero count.
   Binomial logit and censored geometric models as the hurdle part both lead to 

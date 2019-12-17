@@ -12,7 +12,7 @@
 
 \format{
   \itemize{
-    \item{\code{code}}{integer, numeric code for legislatorappearing in Poole and
+    \item{\code{code}}{integer, numeric code for legislator appearing in Poole and
       Rosenthal rollcall data files}
     \item{\code{party}}{character, name of party}
     }

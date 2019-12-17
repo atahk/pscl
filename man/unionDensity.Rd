@@ -43,7 +43,7 @@
   88:412-423. 
   
   Wilensky, Harold L. 1981. Leftism, Catholicism, Democratic
-  Corporatism: The Role of Political Parties in Recemt Welfare State
+  Corporatism: The Role of Political Parties in Recent Welfare State
   Development. In \emph{The Development of Welfare States in Europe
   and America}, ed. Peter Flora and Arnold J. Heidenheimer. New
   Brunswick: Transaction Books. 

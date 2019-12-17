@@ -25,7 +25,7 @@
   \code{\link{predict.ideal}}) against the estimated ideal point of each
   legislator/subject (the estimated mean of the posterior density of the
   ideal point), dimension at
-  a time.  If the legislators' party affiliations are availble in the
+  a time.  If the legislators' party affiliations are available in the
   \code{\link{rollcall}} object that was passed to \code{\link{ideal}},
   then legislators from the same party are plotted with a unique color.
 

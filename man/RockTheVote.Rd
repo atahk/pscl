@@ -4,8 +4,8 @@
 \title{Voter turnout experiment, using Rock The Vote ads}
 \description{
   Voter turnout data spanning 85 cable TV systems, randomly allocated to
-  a voter mobilization experiment targetting 18-19 year olds with "Rock
-  the Vote" television advertisments 
+  a voter mobilization experiment targeting 18-19 year olds with "Rock
+  the Vote" television advertisements 
 }
 \usage{data(RockTheVote)}
 \format{

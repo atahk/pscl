@@ -46,7 +46,7 @@
   preceding decade.}
 
 \source{
-  Ashenfelter, Orley.  1994.  Report on Expected Asbentee Ballots.
+  Ashenfelter, Orley.  1994.  Report on Expected Absentee Ballots.
   Typescript.  Department of Economics, Princeton University.
 }
 

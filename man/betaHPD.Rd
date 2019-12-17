@@ -21,7 +21,7 @@
   \item{xlim}{numeric vector of length 2, the limits of the density's
    support to show when plotting; the default is \code{NULL}, in which
    case the function will confine plotting to where the density is
-   non-neglible} 
+   non-negligible} 
   \item{debug}{logical flag, if \code{TRUE} produce messages to the
    console}
 }

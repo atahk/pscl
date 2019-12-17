@@ -1,7 +1,7 @@
 \name{predprob.glm}
 \alias{predprob.glm}
 
-\title{Predicted Probabilties for GLM Fits}
+\title{Predicted Probabilities for GLM Fits}
 
 \description{
   Obtains predicted probabilities from a fitted generalized linear model

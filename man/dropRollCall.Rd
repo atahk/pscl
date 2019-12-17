@@ -68,7 +68,7 @@ dropRollCall(object, dropList,debug=FALSE)
   \code{dropList} generates a vector of mode \code{\link{logical}},
   either with respect to legislators or votes.  These logical
   vectors are then combined element-wise, such that if any one of
-  the subseting restrictions is \code{TRUE} for a particular
+  the subsetting restrictions is \code{TRUE} for a particular
   legislator or vote, then that legislator or vote is dropped.  Some
   summaries are reported to the console along the way if \code{debug=TRUE}.
 

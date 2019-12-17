@@ -63,7 +63,7 @@ seatsVotes(x, desc = NULL, method = "uniformSwing")
      Review}. 67(2):540-554.
 
    Gelman, Andrew and Gary King.  1990.  Estimating the Consequences of
-   Electoral Redistrictring.  \emph{Journal of the American Statistical
+   Electoral Redistricting.  \emph{Journal of the American Statistical
      Association}. 85:274-282.
 
    Jackman, Simon. 1994.  Measuring Electoral Bias: Australia,

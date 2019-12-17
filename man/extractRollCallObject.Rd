@@ -4,7 +4,7 @@
 \description{
   Given a fitted model of class \code{\link{ideal}}, return the
   \code{\link{rollcall}} object that was used in the model fitting
-  (i.e., apply all subseting and recoding implied by the \code{dropList}
+  (i.e., apply all subsetting and recoding implied by the \code{dropList}
   passed to \code{\link{ideal}}).
 }
 \usage{

@@ -31,7 +31,7 @@ constrain.items(obj, dropList = list(codes = "notInLegis", lop = 0),
 }
 
 \details{\code{constrain.items} and its cousin,
-  \code{\link{constrain.legis}} are usefully thougt of as
+  \code{\link{constrain.legis}} are usefully thought of as
   \dQuote{pre-processor} functions, generating priors \emph{and} start
   values for both the item parameters and the ideal points.  For the
   items specified in \code{x}, the prior mean for each dimension is set

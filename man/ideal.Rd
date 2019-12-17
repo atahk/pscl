@@ -154,7 +154,7 @@ ideal(object, codes = object$codes,
   is, the user can run \code{ideal} without any identification
   constraints. This does not pose any formal/technical problem in a
   Bayesian analysis.  The fact that the posterior density may have
-  mulitple modes doesn't imply that the posterior is improper or that
+  multiple modes doesn't imply that the posterior is improper or that
   it can't be explored via MCMC methods. -- but then use the function
   \code{\link{postProcess}} to map the MCMC output from the space of
   unidentified parameters into the subspace of identified parameters.
@@ -270,10 +270,10 @@ ideal(object, codes = object$codes,
 \value{a \code{\link{list}} of class \code{ideal} with named components
   
   \item{n}{\code{\link{numeric}}, integer, number of legislators in the
-    analysis, after any subseting via processing the \code{dropList}.}
+    analysis, after any subsetting via processing the \code{dropList}.}
 
   \item{m}{\code{\link{numeric}}, integer, number of rollcalls in roll
-    call matrix, after any subseting via processing the \code{dropList}.}
+    call matrix, after any subsetting via processing the \code{dropList}.}
 
   \item{d}{\code{\link{numeric}}, integer, number of dimensions
     fitted.}

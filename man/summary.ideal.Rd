@@ -52,7 +52,7 @@
   \item{bSig}{a \code{\link{list}} of length \code{d}, each component a
     vector of length \code{m}, of mode \code{logical}, equal to
     \code{TRUE} if the corresponding discrimination parameter is
-    distinguishible from zero; see Details.  If \code{store.item} was
+    distinguishable from zero; see Details.  If \code{store.item} was
     set to \code{FALSE} when \code{\link{ideal}} was invoked, then
     \code{bSig} is a list of length zero.}   
   \item{party.quant}{if party information is available through the
@@ -63,12 +63,12 @@
 }
 
 \details{The test of whether a given discrimination parameter is
-  distinguishible from zero first checks to see if the two most extreme
+  distinguishable from zero first checks to see if the two most extreme
   \code{quantiles} are symmetric around .5 (e.g., as are the default
   value of .025 and .975).  If so, the corresponding quantiles of the
   MCMC samples for each discrimination parameter are inspected to see if
   they have the same sign. If they do, then the corresponding
-  discrimination parameter is flagged as distinguishible from zero;
+  discrimination parameter is flagged as distinguishable from zero;
   otherwise not.
 }
 

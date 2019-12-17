@@ -18,7 +18,7 @@ computeMargins(object, dropList = NULL)
       from the analysis; see \code{\link{dropRollCall}} for details.}
 }
 
-\details{ The subseting implied by the \code{dropList} is first applied
+\details{ The subsetting implied by the \code{dropList} is first applied
   to the \code{\link{rollcall}} object, via \code{\link{dropRollCall}}.
   Then, for each remaining roll call vote, the number of legislators
   voting \dQuote{Yea}, \dQuote{Nay}, and not voting are computed, using
@@ -41,7 +41,7 @@ computeMargins(object, dropList = NULL)
 \author{Simon Jackman \email{simon.jackman@sydney.edu.au}}
 
 \seealso{\code{\link{dropRollCall}} on specifying a \code{dropList}.
-  The vote-specific marginals produced by theis function are used by as
+  The vote-specific marginals produced by this function are used by as
   \code{\link{dropRollCall}}, \code{\link{summary.ideal}} and
   \code{\link{predict.ideal}}.}
 

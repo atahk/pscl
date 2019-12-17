@@ -818,7 +818,7 @@ binomial hurdle model is fitted via
 <<hurdle0, eval=FALSE>>=
 fm_hurdle0 <- hurdle(ofp ~ ., data = dt, dist = "negbin")
 @
-This uses the same type of count data model as in the preceeding section
+This uses the same type of count data model as in the preceding section
 but it is now truncated for \code{ofp < 1} and has an additional hurdle
 component modeling zero vs.\ count observations. By default, the hurdle
 component is a binomial GLM with logit link which contains all regressors used in the count
@@ -895,7 +895,7 @@ writeLines(fm_summary)
 \end{tabular}
 \caption{\label{tab:summary} Summary of fitted count regression models for NMES data:
  coefficient estimates from count model, zero-inflation model (both with standard errors
- in parantheses), number of estimated parameters, maximized log-likelihood, AIC, BIC
+ in parentheses), number of estimated parameters, maximized log-likelihood, AIC, BIC
  and expected number of zeros (sum of fitted densities evaluated at zero). The observed
  number of zeros is \Sexpr{sum(dt$ofp < 1)} in \Sexpr{nrow(dt)} observations.}
 \end{center}

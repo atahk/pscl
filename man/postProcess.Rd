@@ -53,7 +53,7 @@ postProcess(object, constraints="normalize", debug = FALSE)
   into the sub-space of identified parameters defined by the fixed
   points in \code{constraints}; i.e., what is the affine transformation
   that maps the unconstrained ideal points into the constraints?  Aside
-  from miniscule numerical inaccuracies resulting from matrix inversion
+  from minuscule numerical inaccuracies resulting from matrix inversion
   etc, this transformation is exact: after post-processing, the
   \code{d+1} constrained points do not vary over the MCMC iterations.
   The remaining \code{n-d-1} ideal points are subject to (posterior)
@@ -118,7 +118,7 @@ Latent Space Approaches to Social Network Analysis. \emph{Journal
   of the American Statistical Association} 97:1090--1098.
 
 Edwards, Yancy D. and Greg M. Allenby. 2003.
-Multivariate Analysis of Mulitple Response Data. \emph{Journal of
+Multivariate Analysis of Multiple Response Data. \emph{Journal of
   Marketing Research} 40:321--334.
 
 Rivers, Douglas. 2003.  \dQuote{Identification of Multidimensional

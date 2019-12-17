@@ -22,7 +22,7 @@ simpi(n)
   \eqn{(x,y)}{(x,y)} have distance from the origin \eqn{d = \sqrt{x^2 +
   y^2}}{d=sqrt(x^2 + y^2)} less than 1.  Four times \eqn{p}{p} is a
   Monte Carlo estimate of \eqn{\pi}{pi}.  This function is a wrapper to
-  a simple C function, bringing noticable speed gains and memory
+  a simple C function, bringing noticeable speed gains and memory
   efficiencies over implementations in native R.
 
   Contrast this Monte Carlo method with Buffon's needle and refinements thereof (see

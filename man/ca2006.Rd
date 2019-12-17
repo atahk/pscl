@@ -4,7 +4,7 @@
 \title{California Congressional Districts in 2006}
 \description{
   Election returns and identifying information, California's 53
-  congressional districts in the 2006 Congresisonal elections.
+  congressional districts in the 2006 Congressional elections.
 }
 \usage{data(ca2006)}
 \format{
