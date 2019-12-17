@@ -2,15 +2,15 @@
 
 |field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.6.1 (2019-07-05) |
+|version  |R version 3.6.2 (2019-12-12) |
 |os       |Ubuntu 19.10                 |
 |system   |x86_64, linux-gnu            |
 |ui       |X11                          |
-|language |                             |
+|language |(EN)                         |
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/Chicago              |
-|date     |2019-12-10                   |
+|date     |2019-12-14                   |
 
 # Dependencies
 
