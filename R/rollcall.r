@@ -182,7 +182,7 @@ print.rollcall <- function(x,print.votes=FALSE, ...){
 
 ## check Votes
 checkVotes <- function(object,codes=object$codes){
-  if(class(object)[1]=="rollcall"){
+  if("rollcall" %in% class(object)){
     mat <- object$votes
   } else {
     if("matrix" %in% class(object)) {
@@ -359,7 +359,7 @@ lopLook <- function(margins,cutOff){
 vectorRepresentation <- function(object,
                                  dropList=list(codes=c("missing",
                                                  "notInLegis"))){
-  if(class(object)!="rollcall")
+  if(!("rollcall" %in% class(object)))
     stop("vectorRepresentation only defined for objects of class rollcall")
   if(is.null(object$codes))
     stop("no rollcall codes")
@@ -436,7 +436,7 @@ summary.rollcall <- function(object,
                              verbose=FALSE,
                              debug=FALSE,
                              ...){
-  if(class(object)!="rollcall")
+  if(!("rollcall" %in% class(object)))
     stop("summary.rollcall only operates on objects of class rollcall")
 
   mc <- match.call()   ## how were we called
@@ -552,7 +552,7 @@ printDropTab <- function(x){
 }
 
 print.summary.rollcall <- function(x, digits=1, ...){
-  if(class(x)!="summary.rollcall")
+  if(!("summary.rollcall" %in% class(x)))
     stop("print.summary.rollcall only defined for objects of class summary.rollcall")
     
   rcObj <- x$call$object

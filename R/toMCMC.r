@@ -1,7 +1,7 @@
 ## convert ideal object to MCMC object
 
 idealToMCMC <- function(object, burnin=NULL){
-  if(class(object)!="ideal")
+  if(!("ideal" %in% class(object)))
     stop("idealToMCMC only defined for objects of class ideal")
   
   if(is.null(burnin))

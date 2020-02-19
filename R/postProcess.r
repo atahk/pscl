@@ -2,7 +2,7 @@
 postProcess <- function(object,
                         constraints="normalize",
                         debug=FALSE){
-  if(class(object)!="ideal")
+  if(!("ideal" %in% class(object)))
     stop("postProcess only defined for objects of class ideal")
 
   ## not a list of normalizing constraint (i.e., usually "normalize=TRUE" with d=1)

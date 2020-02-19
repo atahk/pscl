@@ -3,7 +3,7 @@ predict.ideal <- function(object,
                           cutoff=0.5,
                           burnin=NULL,
                           ...) {
-  if(class(object)!="ideal")
+  if(!("ideal" %in% class(object)))
     stop("predict.ideal only defined for objects of class ideal\n")
   
   if(is.null(object$beta)){
@@ -127,7 +127,7 @@ print.predict.ideal <- function(x,digits=2,...) {
 plot.predict.ideal <- function(x,
                                type=c("legis","votes"),
                                ...){
-  if(class(x)!="predict.ideal")
+  if(!("predict.ideal" %in% class(x)))
     stop("plot.predict.ideal only defined for objects of class predict.ideal")
 
   localType <- match.arg(type)
