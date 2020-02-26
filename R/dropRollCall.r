@@ -62,7 +62,7 @@ compareRollCallObjects <- function(old,new){
 
 
 dropRollCall <- function(object,dropList=NULL,debug=FALSE){
-  if(class(object)!="rollcall"){
+  if(!inherits(object, "rollcall")){
     stop("dropRollCall only works for objects of class rollcall.")
   }
 
@@ -201,7 +201,7 @@ dropRollCall <- function(object,dropList=NULL,debug=FALSE){
     
     if(!is.null(tmpRollCall$legis.data) & sum(dropLegis)>0){
       tmpRollCall$legis.data <- tmpRollCall$legis.data[!dropLegis,]
-      if(class(object$legis.data)=="data.frame"){
+      if(is.data.frame(object$legis.data)){
         class(tmpRollCall$legis.data) <- "data.frame"
         names(tmpRollCall$legis.data) <- names(object$legis.data)
       }
@@ -209,7 +209,7 @@ dropRollCall <- function(object,dropList=NULL,debug=FALSE){
 
     if(!is.null(tmpRollCall$vote.data) & sum(dropVotes)>0){
       tmpRollCall$vote.data <- tmpRollCall$vote.data[!dropVotes,]
-      if(class(object$vote.data)=="data.frame"){
+      if(is.data.frame(object$vote.data)){
         class(tmpRollCall$vote.data) <- "data.frame"
         names(tmpRollCall$vote.data) <- names(object$vote.data)
       }

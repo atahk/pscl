@@ -3,7 +3,7 @@ constrain.legis <- function(obj,
                             dropList=list(codes="notInLegis",lop=0),
                             x, d=1){
   options(warn=-1)
-  if(class(obj)!="rollcall")
+  if(!inherits(obj, "rollcall"))
     stop("object must be of class rollcall")
   
   ## check dimensions of x list items
@@ -67,7 +67,7 @@ constrain.items <- function(obj,
                             dropList=list(codes="notInLegis",lop=0),
                             x, d=1){
   options(warn=-1)
-  if(class(obj)!="rollcall")
+  if(!inherits(obj, "rollcall"))
     stop("object must be of class rollcall")
   options(warn=0)
 

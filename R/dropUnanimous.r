@@ -4,14 +4,14 @@ dropUnanimous <- function(obj, lop=0){
 }
 
 dropUnanimous.rollcall <- function(obj,lop=0){
-  if(class(obj)!="rollcall")
+  if(!inherits(obj, "rollcall"))
     stop("dropUnanimous.rollcall only defined for objects of class rollcall")
   dropRollCall(obj,
                dropList=list(lop=lop))
 }
 
 dropUnanimous.matrix <- function(obj,lop=0){
-  if(class(obj)!="matrix")
+  if(!is.matrix(obj))
     stop("dropUnanimous.matrix only defined for objects of class matrix")
 
   if(lop>1 | lop<0 | is.na(lop) | !is.numeric(lop) | length(lop)!=1)

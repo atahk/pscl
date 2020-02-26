@@ -1,6 +1,6 @@
 ## ideal plotting functions
 plot.ideal <- function(x, conf.int=0.95, burnin=NULL, ...) {
-  if(class(x)!="ideal")
+  if(!inherits(x, "ideal"))
     stop("plot.ideal only available for objects of class ideal")
   
   if(is.null(burnin))
@@ -31,7 +31,7 @@ plot1d <- function(x,
                    burnin=NULL,
                    showAllNames=FALSE,
                    ...){
-  if(class(x)!="ideal")
+  if(!inherits(x, "ideal"))
     stop("plot.ideal only available for objects of class ideal")
   
   if(is.null(burnin))
@@ -140,7 +140,7 @@ plot2d <- function(x,
                    overlayCuttingPlanes=FALSE,
                    ...){
   
-  if(class(x)!="ideal")
+  if(!inherits(x, "ideal"))
     stop("plot.ideal only available for objects of class ideal")
   
   if(is.null(burnin))
@@ -256,7 +256,7 @@ tracex <- function(object,
 
   warnOption <- options()$warn
   options(warn=-1)
-  if(class(object)!="ideal")
+  if(!inherits(object, "ideal"))
     stop("object passed to function tracex must be of class ideal")
 
   if(is.null(d))

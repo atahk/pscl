@@ -174,7 +174,7 @@ strip.trailing.space <- function(x){
 
 ##   ## now actually try to read the data  
 ##   readResults <- try(readLines(file))
-##   if(class(readResults)=="try-error"){
+##   if(inherits(readResults, "try-error")){
 ##     cat(paste("readKH error: could not read from",file,"\n",
 ##               "execution terminating\n"))
 ##     data <- NULL
