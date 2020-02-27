@@ -25,7 +25,7 @@
   from 1964 onward; Alabama has missing data for 1948 and
   1964.}
 
-\source{David Leip's Atlas of U.S. Presidential Elections \url{uhttp://uselectionatlas.org}
+\source{David Leip's Atlas of U.S. Presidential Elections \url{https://uselectionatlas.org}
 }
   
 \examples{
