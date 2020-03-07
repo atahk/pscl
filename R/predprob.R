@@ -3,7 +3,7 @@ predprob <- function(obj, ...){
 }
 
 predprob.ideal <- function(obj, ...){
-  if(!("ideal" %in% class(obj)))
+  if(!inherits(obj, "ideal"))
     stop("predprob.ideal only defined for objects of class ideal")
   else
     predict.ideal(obj,...)$pred.probs

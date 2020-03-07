@@ -45,38 +45,42 @@ ideal <- function(object,
   mda <- FALSE
   
   ## check validity of user arguments
-  if (!("rollcall" %in% class(object)))
-    stop("object must be of class rollcall")
+  if (!inherits(object, "rollcall")){
+    stop("object must be of class rollcall\n")
+  }
   if(((d%%1) != 0) || (d<1)){
-    stop("d is not a positive integer")
+    stop("d is not a positive integer\n")
   }
 
   if(((thin%%1)!=0) || (thin<1)) {
-    stop("thin is not a positive integer")
+    stop("thin is not a positive integer\n")
   }
 
   if(((maxiter%%1)!=0) || (maxiter<1)) {
-    stop("maxiter is not a positive integer")
+    stop("maxiter is not a positive integer\n")
   }
 
-  if(!is.list(dropList))
-    stop("dropList must be a list")
-
-  if(!is.list(codes))
-    stop("codes must be a list")
-
+  if(!is.list(dropList)){
+    stop("dropList must be a list\n")
+  }
+  
+  if(!is.list(codes)){
+    stop("codes must be a list\n")
+  }
+  
   ##check iterations and thinning
   if ((maxiter%%thin)!=0) {
-    stop("maxiter must be a multiple of thin")
+    stop("maxiter must be a multiple of thin\n")
   }
 
   if ((burnin%%thin)!=0) {
-    stop("burnin must be a multiple of thin")
+    stop("burnin must be a multiple of thin\n")
   }
 
-  if (burnin >= maxiter)
-    stop("burnin must be less than maxiter")
-
+  if (burnin >= maxiter){
+    stop("burnin must be less than maxiter\n")
+  }
+  
   if(!is.null(normalize) & d>1){
     cat("normalize option is only meaningful when d=1\n")
   }
@@ -92,8 +96,9 @@ ideal <- function(object,
   tmpObject <- object
   if(!is.null(codes)){
     tmpObject$codes <- codes
-    if(checkCodes(tmpObject$codes))
-      stop("supplied codes fail redundancy checks")
+    if(checkCodes(tmpObject$codes)){
+      stop("supplied codes fail redundancy checks\n")
+    }
   }
   if(!is.null(dropList)){
     if(verbose)
@@ -112,10 +117,12 @@ ideal <- function(object,
   vote.names <- dimnames(y$votes)[[2]]
 
   if (!is.null(use.voter)) {
-      if (!is.vector(use.voter))
-          stop("use.voter must be a vector of length n")
-      if (n != length(use.voter))
-          stop("use.voter must be a vector of length n")
+      if (!is.vector(use.voter)){
+          stop("use.voter must be a vector of length n\n")
+      }
+      if (n != length(use.voter)){
+          stop("use.voter must be a vector of length n\n")
+      }
   }
 
   ## map roll call votes into binary format required by ideal
@@ -124,9 +131,10 @@ ideal <- function(object,
     cat("\n")
   }
   
-  if(checkVotes(y$votes,codes))
-    stop("rollcall: can't map all votes using supplied codes")
-
+  if(checkVotes(y$votes,codes)){
+    stop("rollcall: can't map all votes to 0|1 using supplied codes\n")
+  }
+  
   v <- convertCodes(y,codes)  ## convert to zeros and ones and NAs
   
   ## using a file for storage
