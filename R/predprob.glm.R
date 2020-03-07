@@ -2,7 +2,7 @@ predprob.glm <- function(obj, newdata = NULL, at = NULL, ...){
     if(!inherits(obj,"glm"))
         stop("predprob.glm only available for glm objects (including class negbin)\n")
 
-    isNegBin <- class(obj)[1]=="negbin"
+    isNegBin <- inherits(obj, "negbin")
     isPoisson <- family(obj)$family=="poisson"
     isBinomial <- family(obj)$family=="binomial"
     if(!isNegBin & !isPoisson & !isBinomial)

@@ -45,7 +45,7 @@ ideal <- function(object,
   mda <- FALSE
   
   ## check validity of user arguments
-  if (!("rollcall" %in% class(object)))
+  if (!inherits(object, "rollcall"))
     stop("object must be of class rollcall")
   if(((d%%1) != 0) || (d<1)){
     stop("d is not a positive integer")

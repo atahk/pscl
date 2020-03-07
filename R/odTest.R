@@ -2,7 +2,7 @@ odTest <- function(glmobj,
                    alpha=.05,
                    digits=max(3,getOption("digits")-3))
 {
-  if(class(glmobj)[1]!="negbin")
+  if(!inherits(glmobj, "negbin"))
     stop("this function only works for objects of class negbin\n")
 
   if(alpha>1 | alpha<0)

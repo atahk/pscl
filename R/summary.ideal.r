@@ -19,7 +19,7 @@ printHeaderIdeal <- function(x){
 
 ## summary and print functions
 print.ideal <- function(x, ...) {
-  if(class(x) != "ideal")
+  if(!inherits(x, "ideal"))
     stop("object passed to print.ideal is not of class ideal\n")
 
   cat("Markov chain Monte Carlo Analysis of Roll Call Data\n")
@@ -47,7 +47,7 @@ summary.ideal <- function(object,
                           include.beta=FALSE,
                           ...){
 
-  if(class(object)!="ideal")
+  if(!inherits(object, "ideal"))
     stop("summary.ideal only defined for objects of class ideal")
 
   if(!is.null(object$call$file)){
@@ -179,7 +179,7 @@ summary.ideal <- function(object,
 }
 
 print.summary.ideal <- function(x, digits=3, ...){ 
-  if (!("summary.ideal" %in% class(x)))
+  if (!inherits(x, "summary.ideal"))
     stop("object passed to print.summary.ideal must be of class summary.ideal")
 
   cat("Markov chain Monte Carlo Analysis of Roll Call Data\n")
