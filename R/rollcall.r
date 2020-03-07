@@ -185,7 +185,7 @@ checkVotes <- function(object,codes=object$codes){
   if(inherits(object, "rollcall")){
     mat <- object$votes
   } else {
-    if("matrix" %in% class(object)) {
+    if(inherits(object, "matrix")) {
       mat <- object
     }
   }
