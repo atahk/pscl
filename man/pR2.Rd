@@ -12,7 +12,7 @@ pR2(object, ...)
 \arguments{
   \item{object}{a fitted model object for which \code{logLik},
     \code{update}, and \code{model.frame} methods exist (e.g.,
-    an object of class \code{glm}, \code{polr}, or \code{mulitnom})}
+    an object of class \code{glm}, \code{polr}, or \code{multinom})}
   \item{\dots}{additional arguments to be passed to or from functions}
 }
 
