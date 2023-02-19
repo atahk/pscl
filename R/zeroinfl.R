@@ -2,7 +2,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
                      dist = c("poisson", "negbin", "geometric"),
                      link = c("logit", "probit", "cloglog", "cauchit", "log"),
 		     control = zeroinfl.control(...),
-		     model = TRUE, y = TRUE, x = FALSE)
+		     model = TRUE, y = TRUE, x = FALSE,...)
 {
   ## set up likelihood
   ziPoisson <- function(parms, trunc.start=FALSE) {
@@ -307,7 +307,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
         method = method, hessian = FALSE, control = control),
         error = function(e) list(convergence=1))
 
-    if(fit$convergence > 0) {
+    if(fit$convergence == 0) {
         model_count <- glm.fit(X, Y, family = poisson(), weights = weights, offset = offsetx)
         start <- list(count = model_count$coefficients, zero = model_zero$coefficients)
         if(dist == "negbin") start$theta <- 1
@@ -318,7 +318,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
     }
 
     ## EM estimation of starting values
-    if(ocontrol$EM & dist == "poisson") {
+    if(ocontrol$EM & dist == "poisson" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dpois(0, mui))
@@ -326,7 +326,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
 
       ll_new <- loglikfun(c(start$count, start$zero))
       ll_old <- 2 * ll_new
-    
+
       while(abs((ll_old - ll_new)/ll_old) > control$reltol) {
         ll_old <- ll_new
         model_count <- glm.fit(X, Y, weights = weights * (1-probi), offset = offsetx,
@@ -342,19 +342,19 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
 
-    if(ocontrol$EM & dist == "geometric") {
+    if(ocontrol$EM & dist == "geometric" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = 1, mu = mui))
       probi[Y1] <- 0
 
       ll_new <- loglikfun(c(start$count, start$zero))
-      ll_old <- 2 * ll_new      
+      ll_old <- 2 * ll_new
       ##if(!require("MASS")) {
       ##  ll_old <- ll_new
       ##	warning("EM estimation of starting values not available")
       ## }
-    
+
       while(abs((ll_old - ll_new)/ll_old) > control$reltol) {
         ll_old <- ll_new
         model_count <- suppressWarnings(glm.fit(X, Y, weights = weights * (1-probi),
@@ -370,22 +370,22 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
 
-    if(ocontrol$EM & dist == "negbin") {
+    if(ocontrol$EM & dist == "negbin" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = start$theta, mu = mui))
       probi[Y1] <- 0
 
-      ll_new <- loglikfun(c(start$count, start$zero, log(start$theta)))      
-      ll_old <- 2 * ll_new      
+      ll_new <- loglikfun(c(start$count, start$zero, log(start$theta)))
+      ll_old <- 2 * ll_new
       ## if(!require("MASS")) {
       ##   ll_old <- ll_new
       ##   warning("EM estimation of starting values not available")
       ## }
-      
+
       ## offset handling in glm.nb is sub-optimal, hence...
       offset <- offsetx
-    
+
       while(abs((ll_old - ll_new)/ll_old) > control$reltol) {
         ll_old <- ll_new
         model_count <- suppressWarnings(glm.nb(Y ~ 0 + X + offset(offset), weights = weights * (1-probi),
@@ -403,6 +403,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
 
     if(control$trace) cat("done\n")
   }
+  
 
 
   ## ML estimation
@@ -477,7 +478,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
   if(model) rval$model <- mf
   if(y) rval$y <- Y
   if(x) rval$x <- list(count = X, zero = Z)
-      
+
   class(rval) <- "zeroinfl"
   return(rval)
 }
