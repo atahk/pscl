@@ -2,7 +2,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
                      dist = c("poisson", "negbin", "geometric"),
                      link = c("logit", "probit", "cloglog", "cauchit", "log"),
 		     control = zeroinfl.control(...),
-		     model = TRUE, y = TRUE, x = FALSE, ...)
+		     model = TRUE, y = TRUE, x = FALSE)
 {
   ## set up likelihood
   ziPoisson <- function(parms, trunc.start=FALSE) {
@@ -512,7 +512,7 @@ vcov.zeroinfl <- function(object, model = c("full", "count", "zero"), ...) {
 
   cf <- object$coefficients[[model]]
   wi <- seq(along = object$coefficients$count)
-  rval <- if(model == "count") rval[wi, wi] else rval[-wi, -wi]
+  rval <- if(model == "count") rval[wi, wi, drop = FALSE] else rval[-wi, -wi, drop = FALSE]
   colnames(rval) <- rownames(rval) <- names(cf)
   return(rval)
 }
