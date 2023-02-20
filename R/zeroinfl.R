@@ -318,7 +318,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
     }
     
     ## EM estimation of starting values
-    if(ocontrol$EM & dist == "poisson" & fit$converge == 0) {
+    if(ocontrol$EM & dist == "poisson" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dpois(0, mui))
@@ -342,7 +342,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
     
-    if(ocontrol$EM & dist == "geometric" & fit$converge == 0) {
+    if(ocontrol$EM & dist == "geometric" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = 1, mu = mui))
@@ -370,7 +370,7 @@ zeroinfl <- function(formula, data, subset, na.action, weights, offset,
       }
     }
     
-    if(ocontrol$EM & dist == "negbin" & fit$converge == 0) {
+    if(ocontrol$EM & dist == "negbin" & fit$convergence == 0) {
       mui <- model_count$fitted
       probi <- model_zero$fitted
       probi <- probi/(probi + (1-probi) * dnbinom(0, size = start$theta, mu = mui))
