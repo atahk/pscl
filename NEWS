@@ -1,3 +1,6 @@
+1.5.7   * Add drop = FALSE to some matrices in the zeroinfl and hurdle functions.
+        * Specify that the optim convergence must equal 0 (which means the model converged) in the zeroinfl function.
+        
 1.5.5   * changed "class(obj) == X" to "inherits(obj, X)" or is.data.frame
           for compatibility with R 4.0
 
