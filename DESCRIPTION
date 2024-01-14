@@ -1,6 +1,6 @@
 Package: pscl
-Version: 1.5.7
-Date: 2023-02-20
+Version: 1.5.8
+Date: 2024-01-13
 Title: Political Science Computational Laboratory
 Author: Simon Jackman, with contributions from
         Alex Tahk, Achim Zeileis, Christina Maimone, Jim Fearon and Zoe Meers
@@ -16,6 +16,6 @@ Description: Bayesian analysis of item-response theory (IRT) models,
 	     Computational Laboratory; seats-votes curves.
 LazyData: true
 License: GPL-2
-URL: http://github.com/atahk/pscl
+URL: https://github.com/atahk/pscl
+RoxygenNote: 7.3.0
 NeedsCompilation: yes
-RoxygenNote: 6.0.1

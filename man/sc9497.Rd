@@ -27,8 +27,6 @@
 }
 
 \source{Harold J. Spaeth (1999). \emph{United States Supreme Court Judicial
-Database, 1953-1997 Terms}.  Ninth edition.  Inter-university Consortium for 
-                        Political and Social Research.  Ann Arbor,
-			Michigan.  \url{http://www.icpsr.umich.edu/}}
+Database, 1953-1997 Terms}.  Ninth edition.  Inter-university Consortium for Political and Social Research.  Ann Arbor, Michigan.  \doi{10.3886/ICPSR09422.v9}}
 
 \keyword{datasets}

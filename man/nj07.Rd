@@ -19,7 +19,7 @@
 
 \source{
   Keith Poole's web site:
-  \url{http://legacy.voteview.com/senate110.htm}
+  \url{https://legacy.voteview.com/senate110.htm}
 
   Originally scraped from the Senate's web site by Jeff Lewis.
 

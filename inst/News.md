@@ -1,0 +1,373 @@
+## 1.5.8
+
+- cleaned out last uses of `\itemise` in `Rd`
+- switched to `News.md`
+
+## 1.5.7   
+
+- Add `drop = FALSE` to some matrices in `zeroinfl` and `hurdle` functions.
+- Specify that the `optim` return must equal 0 (normal convergence) in the `zeroinfl` function.
+        
+## 1.5.5   
+
+- changed `class(obj) == X` to `inherits(obj, X)"` or `is.data.frame` for compatibility with R 4.0
+
+## 1.5.4  
+- added `lm.wfit` to `NAMESPACE`
+- updated class testing in `predprob.ideal` and `checkVotes` for compatibility with R 4.0
+- spelling fixes in help pages
+- updated URL for `dtl` files in `readKH`
+
+## 1.5.3
+- fixed bug in `pR2` when missing data is present
+- added error handling when inverting Hessians in hurdle models and zero-inflated count models
+- improved starting values in zero-inflated count models
+
+## 1.5.2  
+- fixed bugs in calls to C routines in `ideal.R`
+
+## 1.5.1	  
+- `AustralianElections` includes 2010, 2013, 2016
+- `presidentialElections` includes 2016 and 2012 Alabama result
+- documentation updated to reflect changes
+
+## 1.5.0	
+- improved truncated normal sampling (15-20% faster)
+- added `use.voter` option to `ideal`, implementing approach from Stephen Jessee's 2016 AJPS article. See `?ideal` for details.
+- updated author contact information
+- fixed voteview URLs to reflect new site structure
+- fixed other broken URLs
+- CRAN compliance
+
+## 1.4.9 
+- fixed bug in AIC correct in Vuong test
+
+## 1.4.8
+-  package dependencies handled better
+-  slight tweeks to `?ideal` 
+-  CRAN compliance
+-  addressing memory leak issues revealed by `valgrind` in ideal's mallocs
+
+## 1.4.7
+-  AI` and BIC in Vuong, better description and printing
+
+## 1.4.6
+-  compliance with CRAN reccs/reqs, vignettes sub-dir
+-  better `Imports/Depends/Suggests` etc
+-  dropped redundant "require" in examples etc
+-  fixed long-standing buglet in Vuong test, AIC type df adjustment to test statistic
+-  use `format.pval` for pvalues printing in Vuong output to screen
+
+## 1.4.5
+-  better compliance with CRAN reccs/reqs, R 3.0.0 etc
+-  drop leading zero in version number
+-  compress PDFs from vignettes
+-  lazy-loading, so um, lazy-load in `readKH.r`
+
+## 1.04.4
+
+-  `presidentialElections` includes 2012
+
+## 1.04.3
+
+-  fixed bug in `postProcess`, not evaluating args in call of `ideal` object
+
+## 1.04.2
+
+-  minor typo in `dropRollCall.Rd`
+
+## 1.04.1
+
+-  fixed bug in non-English locales for `hurdle` and `zeroinfl` formula processing if second part of formula contained a period.
+
+## 1.04
+-  fixed quite serious bug with storing item parameters
+-  `COPYING` file deprecated (?), deleted from repos with r174
+
+## 1.03.12
+
+-  minor bug in `tracex` with d>1
+-  deprecate `showAll` plotting option in `tracex`, change to `multi`
+	  (default=`FALSE`)
+
+## 1.03.11
+-  small change to documentation for `ca2006` (thanks Arthur Aguirre)
+
+## 1.03.10
+-  `pythag` deprecated in `Rmath.h`, use system `hypot` instead (3/13/2011)
+-  warnings from `ideal` about memory etc only come on with `verbose=TRUE` (req by Stephen Jessee)
+
+## 1.03.9
+
+### ideal 
+  - small change in `partyLoyalty` (thanks to Chris Hanretty)
+  - reformat output of to be 3-d arrays
+  - change default prior precision for item parameters to .04 (used to be .01)
+
+-  added `UKHouseOfCommons` data; Example 6.9 in BASS
+
+## 1.03.8
+
+-  added an optional "at" argument to predprob() methods for count data so that the counts at which the probabilities are evaluated can be specified
+
+## 1.03.7
+
+-  small bug in `constrain.item` (reported by Paul Johnson)
+
+-  change normalization option in ideal to generate posterior means with mean 0, sd 1
+
+-  do normalization over all dimensions
+
+-  typos in documentation for `pseudo-R2` (thanks to Henrik P)
+
+## 1.03.6
+
+-  made `gam` dependency explicit
+
+-  change `linear.hypothesis` to `linearHypothesis`
+
+## 1.03.5
+-  added `AustralianElectionPolling`
+-  tidy up Rd files for data sets (`itemize` -> `describe`)
+-  use `dQuote` in `Rd` files (or not)
+-  update `AustralianElections` with 2007 results
+
+## 1.03.4
+-  added `iraqVote`
+-  updated `presidentialElections` with 2008 results
+-  added `nj07`
+-  added `vote92`
+
+## 1.03.3
+
+### hurdle and zeroinfl
+-  offsets in zero model are now allowed and can be different from count model
+-  included error message for negative binomial zero hurdle model with only an intercept as such models are not identified
+-  fixed bug in `predict()` method for `hurdle` object when a Poisson zero hurdle model is employed
+-  fixed bug whereby formulas of type `y ~ . | . - x1 - x2` were not processed correctly
+-  for weighted hurdle/zeroinfl models the number of observations is now the effective number, i.e., with weights > 0
+
+## 1.03.2
+
+-  fixing `.Last.lib` problems
+
+-  turned off `MDA` option in ideal by default, seems broken, needs work
+
+## 1.03a 
+-  make `startvalues` in `ideal` accept names other than `xstart` (anything unique that starts with `x` will do)
+
+## 1.03
+-  bug in `ideal` start value argument processing; thanks Bjorn Hoyland
+
+## 1.02
+-  added `politicalInformation` data
+-  added `MDA` option to `ideal`
+
+## 1.01
+-  added `EfronMorris` data
+-  added `RockTheVote` data
+
+## 1.00
+-  updated `CITATION` and `docs` to version 1.00 accompanying JSS paper
+
+## 0.97
+-  minor changes to `print` and `summary` methods for `rollcall` and `ideal` objects
+-  bugs in `ideal` (discovered via odd combination of `store.item` and `file`)
+-  `dropRollCallObject` makes prettier output, works a little more sanely
+-  `s109` is now updated to its final status, example points to voteview.com
+-  `s110` in examples for `readKH`
+-  adding component named `dropInfo` to `rollcall` objects produced by `dropRollCall` per request of Keith Poole (this stores information about which legislators/votes are retained by `dropRollCall`)
+-  added `presidentialElections` data from Jackman book manuscript
+-  bugs in `igammaHDR` fixed, some typos too
+
+## 0.96
+-  Final changes for JSS paper (before release 1.0 accompanying JSS paper).
+-  Changed the default formula specification for zero-inflated models. `y ~ x` now means `y ~ x | x` and *not* `y ~ x | 1` anymore. Thus, the same default formula processing is applied to zero-inflated and hurdle models.
+-  Error in `normalizeIdeal` found by Jeff Lewis
+
+## 0.95
+-  fixed `fitted()` and `predict()` methods for `hurdle` and `zeroinfl` for the case when an offset is specified 
+
+## 0.94
+
+### hurdle and zero-inflated count models
+-  added analytical gradients (speed-up of factor 5-10)
+-  new package `sandwich` (2.1-0) provides `estfun()` and `bread()` methods, thus `sandwich()` and `vcovOPG()` covariances are available
+-  extended/improved `countreg` vignette
+-  fixed Pearson residuals to use correct zero-augmented variance
+-  extended `predict()` methods
+-  added `extractAIC()` methods
+
+## 0.93
+-  improving matching legislator and vote names in constrain functions, in response to sub-optimal behavior reported by Keith Poole
+
+## 0.92
+-  minor errors in various functions spotted with stricter code checking in R-devel 2.6
+-  minor typo in documentation for `s109`
+-  need negative 1 for negative intercept in another part of `predict.ideal` (for the case where the researcher did not supply burn-in; 05/15/2007).
+
+## 0.91
+-  added Monte Carlo simulation of pi (`simpi`)
+
+## 0.90
+-  version bump as requested by Achim
+-  adding pseudo r-squared stuff
+-  adding admit data for ordered probit example
+-  adding `logLik.polr`
+-  adding `hitmiss` method
+
+## 0.76
+-  `offset` and `weights` arguments have been added to `zeroinfl()` and `hurdle()`
+- `hurdletest()` is a new wrapper for `linear.hypothesis()` from the `car` package to test for the presence of hurdles.
+-  A vignette about count data regression in R has been added (which in particular explains the ideas behind `zeroinfl()` and `hurdle()`).
+-  correcting/improving documentation of `ideal` re identification and the normalize option
+-  added absentee ballot data from Orley Ashenfelter, used in BASS
+-  John Fox noted an error in `odTest` (wrong p-value); fixed.
+
+## 0.75
+-  version bump, requested by CRAN maintainers
+-  minor typo in help for `predict.ideal`
+-  fixed bugs with `interactive()` in `ideal.r`
+-  trouble-shooting `predict.ideal` as per request of Boris Shor
+-  bug (?) in `predict.ideal`; after version 0.73 change to negative intercept, need change in `predict.ideal.r` to match
+-  in `zeroinfl()`: `binomial(link = link)` is deprecated, use `binomial(link = linkstr)` instead
+
+## 0.74
+-  deprecating `meanzero` option in ideal, replace with `normalize`
+-  new options for specifying start values in `ideal` (`eigen`, `random`, or user-supplied list); this fixes a bug reported by Boris Shor <boris@bshor.com> when working with large rollcall objects
+-  removed bad escape `"\,"` in `readKH` reported by Kurt Hornick <Kurt.Hornik@wu-wien.ac.at>
+-  dummy entry to force svn commit/update (testing new svn server)
+
+## 0.73	
+
+- added `seatsVote` class and `ca2006` data
+- cleaned up startvalues processing in `ideal`
+- improved priors in `ideal`
+- added `verbose` option to `ideal`
+- less console output from `ideal.c`
+- some changes to documentation, e.g., `postProcess` gets extra references
+-  sort output by posterior means of ideal points in `summary.ideal`
+-  improved `tracex`
+-  fixed bug in `dropRollCall` (was dropping `legis.data` attributes)
+-  fixed bug in `partyLoyalty`, called by `summary.rollcall(...,verbose=TRUE)`
+-  changed ideal model to have a negative intercept; required changes to `updatex.c`, `updatey.c` and `xreg.c`
+
+## 0.72	
+
+- fixed error in `bioChemists` data found by Bettina Guen <gruen@ci.tuwien.ac.at>, variable `kids5`  was off by 1 unit, now runs from min of zero (no kids).
+
+## 0.71	
+
+- fixed bug in betaHPD discovered by John Bullock
+
+## 0.70	
+
+### completely rewritten version of `hurdle()` and `zeroinfl()`
+
+- new formula interface of type `y ~ x | z` where `y ~ x` specifies the count model and `z` the inflation/hurdle regressors.
+
+- re-structured returned value, is now more similar to "glm" objects
+
+- extended/enhanced extractor functions
+
+## 0.62
+
+- `plot.ideal.1d`: better left plot margin, based on max length of `legis.name`
+
+- `plot.ideal.2d`: inconsistent testing of presence of beta in ideal object when overlaying cutting planes
+
+- `plot.ideal.Rd`: more examples (but in `\dontrun`)
+
+- `tracex`: bug for 2d `ideal` objects
+
+- `tracex`: 2d, make legend lines heavier for `showAll`
+
+- `tracex`: for `R >= 2.4`, change `par()` to `par(no.readonly=TRUE)`
+
+- fixed typo in `plot.ideal.Rd`
+
+## 0.61	
+
+- fixed bug in `summary.ideal` found by Keith Poole (8/8/06)
+- documentation of `ideal` section on Identification changed to reflect presence of `postProcess` function
+- added `summary.rollcall` into `NAMESPACE` per request of Jeff Lewis
+- no `nsl` function on Windows, changed `readKH` to simply call `readLines` with a `try-error` wrapper per suggestion of XP-user Jeff Lewis
+- processing of `dropList` improved, per suggestion of Jeff Lewis
+- cosmetic changes to print.summary.rollcall
+- fixed errors caused by removing `sysdata.rda`; now utility data sets such as `stateinfo` and `partyinfo` have to loaded via `data()` in functions inside `readKH` subfunctions; thanks Jeff Lewis.
+
+## 0.60	
+- added postProcess
+- added `jitter` to `plot.predict.ideal`
+- changed `start` to `burnin` in many function that handle `ideal` objects
+- changed `checkStart` to `checkBurnIn` in `idealHelper.r`, returns `keep` (logical vector)
+- improved documentation for `plot1d`
+- dropped `plot1d` and `plot2d` from export in `NAMESPACE`
+- consolidated some help files, making fewer entries in package index etc
+- checked package with `codetools()`, cleaned up some redundancies, overwriting of function args inside of functions etc
+- minor stylistic changes to titles and descriptions in help files
+
+## 0.59	
+- fixed compiler warning in `dtnorm` regarding return value
+- fixed compiler warning in `IDEAL` regarding double printed as int
+- minor documentation fix
+- removed unneeded directories
+
+## 0.58	
+- documentaton fixes and cleanups, prompted by Kurt Hornik's check of 0.57 at CRAN
+- fixed errors in `rollcall` documentation
+
+## 0.57	
+- added `dtl` file support to `readKH`
+- extensive reliance on `match.call()`, rather than carrying around copies of objects, many changes to numerous functions
+- `dropList` introduced, many functions changed; see `?dropRollCall` and ?`dropUnanimous` (`rollcall` objects)
+- added `extractRollCallObject` for `ideal` objects
+- added `computeMargins` for `rollcall` objects
+- added `convertCodes` operates on `codes` component of `rollcall` object
+- `tracex` handles 2d traces gracefully
+- added `plot.predict.ideal`
+- prior precisions in `constrain.legis` and `constrain.item` are .01 for unconstrained parameters
+- added `s109`, dropped `s102` as demonstration data, ships with package
+- added `vectorRepresentation` (`rollcall` object)
+
+## 0.56	
+- changed `rollcall` class to have `legis.data` and `vote.data` data frames
+- amended plotting functions appropriately
+- `rollcall` objects have party loyalty scores
+- `rollcall` objects have lopsided data
+- `ideal` saves some barebones summary statistics (posterior means)
+- `summary.ideal` computes standard deviations
+- `summary.ideal` and `print.summary.ideal` displays information on bills that fail to discriminate
+- `plot1d` (plot method for 1d `ideal` objects) has option for all legislator names
+- plot2d (plot method for 2d `ideal` objects) has option to overlay estimated cutting lines
+- added `readKH` function and supporting data objects in `R/sysdata.rda` (`state.info` and `party`)
+- `readKH` has extensive checks and debugging of reads from web (thanks to Kurt Kornik <Kurt.Hornik@wu-wien.ac.at>)
+- minor bug fixes in documentation and examples
+- made `ideal` examples shorter
+- add `coda` to list of required packages
+- fixed error in negative binomial hurdle model, added theta to coefficients dimnames
+- added TODO file to top-level directory of package
+- fixed bug in `print.zeroinfl` (thanks to Bettina Gruen <gruen@ci.tuwien.ac.at>)
+- fixed bugs in `zeroinfl` (Bettina Gruen <gruen@ci.tuwien.ac.at>)
+- corrected spelling of Ginsb*u*rg in `sc9497` (Supreme Court sample data)
+
+## 0.55	
+- added ideal point estimation (Alex Tahk)
+- added gamma functions for Jackman BASS book
+
+## 0.54	
+- fixed errors in documentation for `summary.zeroinfl`
+
+## 0.53	
+- edited documentation for `odTest`
+
+## 0.52	
+- changed print.matrix references to print, since print.matrix deprecated in R > 2.1
+- added `ntable` from Jim Fearon
+- added `betaHPD`
+
+## 0.51	
+- fixed error in print.summary.zeroinfl (thanks to Dave Atkins; datkins@fuller.edu)
+
+## 0.5	
+- initial relase to CRAN

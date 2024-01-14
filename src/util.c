@@ -10,7 +10,7 @@ void memallocerror()
 
 void calcerror(char error_text[])
 {
-  error(error_text);
+  error("%s",error_text);
 }
 
 int *ivector(long n)

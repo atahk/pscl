@@ -56,7 +56,7 @@
 
 \note{The Liberal National Party of Queensland formed in 2008 after a merger of the Liberal Party and the National Party. In all elections following 2008, they have been categorised under \code{LP}.}
 
-\source{Australian Electoral Commission. \url{http://www.aec.gov.au}.
+\source{Australian Electoral Commission. \url{https://www.aec.gov.au}.
 }
 
 \references{Jackman, Simon. 2009. \emph{Bayesian Analysis for the Social Sciences}.  Wiley: Hoboken, New Jersey.  Example 3.5.

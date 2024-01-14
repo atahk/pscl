@@ -26,5 +26,5 @@
   \code{KENNEDY, E (D-MA)}.} 
 \seealso{\code{\link{state}}
 }
-\source{Various ICPSR codebooks. \url{http://www.icpsr.umich.edu}}
+\source{Various ICPSR codebooks. e.g., \doi{10.3886/ICPSR00002.v5}}
 \keyword{datasets}

@@ -141,12 +141,12 @@ Cameron, A. Colin and Pravin K. Trivedi. 2005. \emph{Microeconometrics: Methods 
 Cambridge: Cambridge University Press.
 
 Lambert, Diane. 1992. \dQuote{Zero-Inflated Poisson Regression,
-with an Application to Defects in Manufacturing.} \emph{Technometrics}. \bold{34}(1):1-14
+with an Application to Defects in Manufacturing.} \emph{Technometrics}. \bold{34}(1):1-14. \doi{10.2307/1269547} 
 
 Zeileis, Achim, Christian Kleiber and Simon Jackman 2008.
 \dQuote{Regression Models for Count Data in R.} 
 \emph{Journal of Statistical Software}, \bold{27}(8).
-URL \url{http://www.jstatsoft.org/v27/i08/}.
+URL \url{https://www.jstatsoft.org/v27/i08/}.
 }
 
 \author{Achim Zeileis <Achim.Zeileis@R-project.org>}

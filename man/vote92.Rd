@@ -28,7 +28,7 @@
 
 	Miller, Warren E., Donald R. Kinder, Steven J. Rosenstone and the National Election Studies.  1999.  \emph{National Election Studies, 1992: Pre-/Post-Election Study}.  Center for Political Studies, University of Michigan: Ann Arbor, Michigan.
 
-	 Inter-University Consortium for Political and Social Research.  Study Number 1112.  \url{http://dx.doi.org/10.3886/ICPSR01112}.   	
+	 Inter-University Consortium for Political and Social Research.  Study Number 1112.  \doi{10.3886/ICPSR01112}.   	
 }
 \references{
 	Jackman, Simon. 2009.  \emph{Bayesian Analysis for the Social Sciences}.

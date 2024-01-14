@@ -11,7 +11,7 @@
 \usage{data(unionDensity)
 }
 \format{
-  \itemize{
+  \describe{
     \item{\code{union}}{numeric, percentage of the total number of wage
       and salary earners plus the unemployed who are union members,
       measured between 1975 and 1980, with most of the data drawn from 1979}

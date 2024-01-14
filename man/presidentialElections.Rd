@@ -10,12 +10,12 @@
 \usage{data(presidentialElections)}
 
 \format{
-  \itemize{
+  \describe{
     \item{\code{state}}{character, name of state}
-    \item{\item{demVote}}{numeric, percent of the vote for president won by the
+    \item{\code{demVote}}{numeric, percent of the vote for president won by the
       Democratic candidate}
-    \item{\item{year}}{numeric, integer}
-    \item{\item{south}}{logical, \code{TRUE} if state is one of the 11 states
+    \item{\code{year}}{numeric, integer}
+    \item{\code{south}}{logical, \code{TRUE} if state is one of the 11 states
       of the former Confederacy}
   }
 }

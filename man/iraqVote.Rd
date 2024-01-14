@@ -27,7 +27,7 @@
 \source{
 	Keith Poole, 107th Senate Roll Call Data. \url{https://voteview.com/static/data/out/votes/S107_votes.ord}  The Iraq vote is vote number 617.
 
-	David Leip's Atlas of U.S. Presidential Elections.  \url{http://uselectionatlas.org} 
+	David Leip's Atlas of U.S. Presidential Elections.  \url{https://uselectionatlas.org} 
 }
 \references{
 	Jackman, Simon. 2009.  \emph{Bayesian Analysis for the Social Sciences}.  Wiley: Chichester.  Example 8.3.

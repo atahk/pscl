@@ -11,7 +11,7 @@
 \usage{data(partycodes)}
 
 \format{
-  \itemize{
+  \describe{
     \item{\code{code}}{integer, numeric code for legislator appearing in Poole and
       Rosenthal rollcall data files}
     \item{\code{party}}{character, name of party}
@@ -22,5 +22,5 @@
   into strings, via a table lookup in this data frame.}
 \seealso{\code{\link{readKH}}
 }
-\source{Keith Poole's website: \url{http://legacy.voteview.com/PARTY3.HTM}}
+\source{Keith Poole's website: \url{https://legacy.voteview.com/PARTY3.HTM}}
 \keyword{datasets}

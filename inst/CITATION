@@ -5,35 +5,34 @@ citHeader("To cite pscl/ideal in publications use")
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
-citEntry(entry="Manual",
+bibentry(bibtype="Manual",
          title = "{pscl}: Classes and Methods for {R} Developed in the Political Science Computational Laboratory",
-         author = person("Simon", "Jackman", email = "simon.jackman@sydney.edu.au"),
-         organization = "United States Studies Centre, University of Sydney",
-         address = "Sydney, New South Wales, Australia",
+         author = person(given="Simon", family="Jackman", role = "aut", email = "simon.jackman@sydney.edu.au"),
+         organization = "University of Sydney",
+         address = "Sydney, Australia",
          year = year,
          note = note,
          url = "https://github.com/atahk/pscl/",
-
-         textVersion =
-         paste("Simon Jackman",
-   	       sprintf("(%s).", year),	 
-               "pscl: Classes and Methods for R Developed in the Political Science Computational Laboratory.",
-               "United States Studies Centre, University of Sydney.",
-               "Sydney, New South Wales, Australia.",
-	       paste(note, ".", sep = ""),
-               "URL https://github.com/atahk/pscl/")
+         textVersion = paste(
+          "Simon Jackman",
+          sprintf("(%s).", year),   
+          "pscl: Classes and Methods for R Developed in the Political Science Computational Laboratory.",
+          "Sydney, Australia.",
+          paste(note, ".", sep = ""),
+          "URL https://github.com/atahk/pscl/")
          )
 
-citEntry(entry="Article",
+bibentry(bibtype="Article",
          title = "Regression Models for Count Data in {R}",
-         author = personList(as.person("Achim Zeileis"), 
-	                     as.person("Christian Kleiber"),
-                             as.person("Simon Jackman")),
+         author = c(as.person("Achim Zeileis"), 
+                    as.person("Christian Kleiber"),
+                    as.person("Simon Jackman")
+                    ),
          journal      = "Journal of Statistical Software",
          year         = "2008",
          volume       = "27",
          number       = "8",
-         url          = "http://www.jstatsoft.org/v27/i08/",
+         url          = "https://www.jstatsoft.org/v27/i08/",
          
          textVersion = 
          paste("Achim Zeileis, Christian Kleiber, Simon Jackman (2008).", 
