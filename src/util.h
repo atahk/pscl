@@ -1,4 +1,4 @@
-void memallerror(void);
+void memallocerror(void);
 void calcerror(char error_text[]);
 int *ivector(long n);
 double *dvector(long n);
