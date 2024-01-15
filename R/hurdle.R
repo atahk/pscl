@@ -298,7 +298,7 @@ hurdle <- function(formula, data, subset, na.action, weights, offset,
   method <- control$method
   hessian <- control$hessian
   separate <- control$separate
-  ocontrol <- control
+  ##ocontrol <- control
   control$method <- control$hessian <- control$separate <- control$start <- NULL
 
   ## ML estimation

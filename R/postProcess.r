@@ -25,8 +25,8 @@ postProcess <- function(object,
 }
 
 getNormalizingTransform <- function(object){
-  n <- object$n
-  m <- object$m
+  ##n <- object$n
+  ##m <- object$m
   d <- object$d
 
   offsets <- apply(object$xbar,2,mean)  
@@ -57,8 +57,8 @@ affineTrans <- function(x,target){
 
 postProcessAffine <- function(object,constraints,debug){
   d <- object$d
-  n <- object$n
-  m <- object$m
+  ##n <- object$n
+  ##m <- object$m
   nSavedIters <- dim(object$x)[1]
   theIters <- dimnames(object$x)[[1]]
   keep <- checkBurnIn(object,

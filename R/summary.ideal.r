@@ -74,8 +74,8 @@ summary.ideal <- function(object,
   bsd <- NULL
   xHDR <- NULL
   bHDR <- NULL
-  xResults <- list()
-  bResults <- list()
+  ##xResults <- list()
+  ##bResults <- list()
   bSig <- list()
 
   myHPD <- function(x,prob){

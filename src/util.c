@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <R_ext/Print.h>
 #include <R_ext/Error.h>
+#include "util.h"
 
 void memallocerror()
 {

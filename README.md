@@ -2,9 +2,9 @@
 
 ## Description
 
-**pscl** is an R package providing classes and methods for
+**pscl** is an R package providing classes, methods and test data for
 
-- Bayesian analysis of roll call data (item-response models)
+- Bayesian analysis of roll call data and other binary, item-response type data (e.g., from surveys or educational testing).
 
 - elementary Bayesian statistics
 
@@ -12,9 +12,15 @@
 
 - utility functions
 
+## Historical note
+
+The Political Science Computational Laboratory was the name of Simon Jackman's research group at Stanford University's Department of Political Science (2002-2014), where this package was first developed.
+
+The hurdle and count data models were extensively re-written and updated by Achim Zeileis and Christian Kleiber.  
+
 ## Installation
 
-Most users should use latest stable release of the packge, which can be installed from [CRAN](https://cran.r-project.org/) by running
+Most users should use latest stable release of the package, which can be installed from [CRAN](https://cran.r-project.org/) by running
 ```R
 install.packages("pscl")
 ```

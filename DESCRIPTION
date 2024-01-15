@@ -1,19 +1,26 @@
 Package: pscl
-Version: 1.5.8
-Date: 2024-01-13
+Version: 1.5.9
+Date: 2024-01-14
 Title: Political Science Computational Laboratory
-Author: Simon Jackman, with contributions from
-        Alex Tahk, Achim Zeileis, Christina Maimone, Jim Fearon and Zoe Meers
-Maintainer: Simon Jackman <simon.jackman@sydney.edu.au>
+Authors@R: c(
+  person("Simon", "Jackman",
+         role = c("aut", "cre"),
+         email = "simon.jackman@sydney.edu.au",
+         comment = c(ORCID = "0000-0001-7421-4034")
+         ),
+  person("Alex", "Tahk", role = c("ctb"), comment = c(ORCID = "0000-0001-7895-9420")),
+  person("Achim", "Zeileis", role = c("ctb"), comment = c(ORCID = "0000-0003-0918-3766")),
+  person("Christina", "Maimone", role = c("ctb"), comment = c(ORCID = "0000-0002-0402-6297")),
+  person("James", "Fearon", role = c("ctb")),
+  person("Zoe", "Meers", role = c("ctb"), comment = c(ORCID = "0000-0001-8045-6531"))
+  )
 Imports: MASS, datasets, grDevices, graphics, stats, utils
-Suggests: lattice, MCMCpack, car, lmtest, sandwich, zoo, coda, vcd, mvtnorm,
-        mgcv
+Suggests: lattice, MCMCpack, car, lmtest, sandwich, zoo, coda, vcd, mvtnorm, mgcv
 Description: Bayesian analysis of item-response theory (IRT) models,
-	     roll call analysis; computing highest density regions; maximum
-	     likelihood estimation of zero-inflated and hurdle models for count
-	     data; goodness-of-fit measures for GLMs; data sets used
-	     in writing	and teaching at the Political Science
-	     Computational Laboratory; seats-votes curves.
+  roll call analysis; computing highest density regions; 
+  maximum likelihood estimation of zero-inflated and hurdle models for count data;
+  goodness-of-fit measures for GLMs;
+  data sets used in writing	and teaching; seats-votes curves.
 LazyData: true
 License: GPL-2
 URL: https://github.com/atahk/pscl

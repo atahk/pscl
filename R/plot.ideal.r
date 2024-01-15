@@ -41,7 +41,7 @@ plot1d <- function(x,
   
   checkD(x,d)                    ## check that selected dimension is ok
   checkCI(conf.int)              ## check that confidence interval is ok
-  q <- c((1-conf.int)/2, 1-((1-conf.int)/2))  ## quantiles from CI
+  ##q <- c((1-conf.int)/2, 1-((1-conf.int)/2))  ## quantiles from CI
   
   xm <- x$xbar                   ## xbar
   indx <- order(xm)              ## sort index

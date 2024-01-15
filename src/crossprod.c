@@ -95,7 +95,7 @@ void crossxy(double **x, double *y, int n, int k, double *xpy)
     xrow = x[i];
     yi = y[i];
     for (j=0;j<k;j++){
-      xpy[j] += xrow[j]*y[i];
+      xpy[j] += xrow[j]*yi;
     }
   }
 

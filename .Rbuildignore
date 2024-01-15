@@ -1,8 +1,2 @@
-LICENSE
-README.md
-cran-comments.md
-.DS_Store
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^revdep$
-^CRAN-RELEASE$
