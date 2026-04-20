@@ -1,6 +1,6 @@
 Package: pscl
-Version: 1.5.9
-Date: 2024-01-14
+Version: 1.6.0
+Date: 2026-04-20
 Title: Political Science Computational Laboratory
 Authors@R: c(
   person("Simon", "Jackman",

@@ -43,7 +43,7 @@
   Universit\"atsstr.~15\\
   6020 Innsbruck, Austria\\
   E-mail: \email{Achim.Zeileis@R-project.org}\\
-  URL: \url{http://statmath.wu-wien.ac.at/~zeileis/}
+  URL: \url{https://www.zeileis.org/}
 }
 
 \begin{document}
@@ -55,12 +55,25 @@
 %\VignettePackage{pscl}
 
 <<preliminaries, echo=FALSE, results=hide>>=
+extra_libs <- c(.Library.site, .Library)
+extra_libs <- extra_libs[nzchar(extra_libs) & dir.exists(extra_libs)]
+.libPaths(unique(c(.libPaths(), extra_libs)))
+
 library("sandwich")
 library("lmtest")
 library("MASS")
 library("car")
 library("pscl")
-load("DebTrivedi.rda")
+
+debtrivedi_path <- c(
+  "DebTrivedi.rda",
+  file.path("vignettes", "DebTrivedi.rda"),
+  system.file("doc", "DebTrivedi.rda", package = "pscl")
+)
+debtrivedi_path <- debtrivedi_path[file.exists(debtrivedi_path)][1]
+
+if(is.na(debtrivedi_path)) stop("Could not locate DebTrivedi.rda")
+load(debtrivedi_path)
 
 clog <- function(x) log(x + 0.5)
 cfac <- function(x, breaks = NULL) {
@@ -110,7 +123,7 @@ methods for diagnostics and inference. Here, we discuss the implementation
 of hurdle and zero-inflated models in the functions \fct{hurdle} and
 \fct{zeroinfl} in the \pkg{pscl} package \citep{countreg:Jackman:2008},
 available from the Comprehensive \proglang{R} Archive Network (CRAN)
-at \url{http://CRAN.R-project.org/package=pscl}.
+at \url{https://CRAN.R-project.org/package=pscl}.
 The design of both modeling functions as well as the methods operating
 on the associated fitted model objects follows that of the base \proglang{R}
 functionality so that the new software integrates easily into the
@@ -567,7 +580,7 @@ individuals, aged 66 and over, who are covered by Medicare, a public
 insurance program. Originally obtained from the US National Medical
 Expenditure Survey (NMES) for 1987/88, the data are available from the data archive of the
 \textit{Journal of Applied Econometrics} at
-\url{http://www.econ.queensu.ca/jae/1997-v12.3/deb-trivedi/}. It was
+\url{http://qed.econ.queensu.ca/jae/1997-v12.3/deb-trivedi/}. It was
 prepared for an \proglang{R} package accompanying
 \cite{countreg:Kleiber+Zeileis:2008} and is also available as
 \code{DebTrivedi.rda} in the \textit{Journal of Statistical Software}
@@ -1035,7 +1048,7 @@ The results in this paper were obtained using
 \pkg{car}~\Sexpr{gsub("-", "--", packageDescription("car")$Version)},
 \pkg{lmtest}~\Sexpr{gsub("-", "--", packageDescription("lmtest")$Version)}.
 \proglang{R} itself and all packages used are available from
-CRAN at \url{http://CRAN.R-project.org/}.
+CRAN at \url{https://CRAN.R-project.org/}.
 
 \bibliography{countreg}
 

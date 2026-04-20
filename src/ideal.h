@@ -62,6 +62,44 @@ void bayesregFull(double **xpx, double *xpy,
 		  double *bpost, double **vpost,
 		  int p);
 
+/* v2 backend: fused Cholesky-based posterior mean + MVN sample */
+void bayesreg_chol(double **xpx, double *xpy,
+		   double *bp, double **priormat,
+		   double *bpost, double *sample,
+		   int p,
+		   double **L, double *d, double *z, double *r);
+
+void updatex_v2(double **ystar, int **ok, double **beta,
+		double **x, double **xp, double **xpv,
+		int n, int m, int d, int impute);
+
+void updateb_v2(double **ystar, int **ok, double **beta, double **xreg,
+		double **bp, double **bpv,
+		int n, int m, int d, int impute);
+
+void updateb_v2_usevoter(double **ystar, int **ok, double **beta, double **xreg,
+			 double **bp, double **bpv,
+			 int n, int m, int d, int impute, int *usevoter);
+
+/* v3 backend: v2 + missing-data subtract trick */
+void updatex_v3(double **ystar, int **ok, double **beta,
+		double **x, double **xp, double **xpv,
+		int n, int m, int d, int impute,
+		int *n_miss_i, int **miss_j_for_i,
+		double **bpb_total);
+
+void updateb_v3(double **ystar, int **ok, double **beta, double **xreg,
+		double **bp, double **bpv,
+		int n, int m, int d, int impute,
+		int *n_miss_j, int **miss_i_for_j,
+		double **xpx_total);
+
+void updateb_v3_usevoter(double **ystar, int **ok, double **beta, double **xreg,
+			 double **bp, double **bpv,
+			 int n, int m, int d, int impute, int *usevoter,
+			 int *n_miss_j, int **miss_i_for_j,
+			 double **xpx_total);
+
 void renormalizeVector(double *z, int p, double m);
 
 double r_sd(double s, double df);

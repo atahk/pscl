@@ -17,7 +17,13 @@ ideal(object, codes = object$codes,
       meanzero = normalize,
       priors = NULL, startvals = "eigen",
       store.item = FALSE, file = NULL,
-      verbose=FALSE, use.voter=NULL)
+      verbose = FALSE, use.voter = NULL,
+      n.chains = 1L,
+      mc.cores = getOption("mc.cores", 1L),
+      seed = NULL,
+      chain.sd = 1.0,
+      n.threads = getOption("pscl.n.threads", 1L),
+      .backend = c("classic", "v2", "v3", "v4", "v5"))
 }
 
 \arguments{
@@ -110,6 +116,59 @@ ideal(object, codes = object$codes,
     parameters. The default value of \code{NULL} will run the standard
     ideal-point model, which uses all legislators in updating item
     parameters. See Jessee (2016).}
+
+  \item{n.chains}{positive integer, number of independent MCMC chains to
+    run. Default is \code{1}. When \code{n.chains > 1}, the return value
+    is a list of \code{ideal} objects with class \code{"idealList"}; see
+    \strong{Multiple chains} in Details and \code{\link{idealToMCMC}} for
+    constructing a \code{coda} \code{mcmc.list}. Each chain is seeded
+    independently and (for chains 2..\code{n.chains}) starts from a
+    perturbation of the start values used for chain 1.}
+
+  \item{mc.cores}{positive integer, number of parallel workers used to
+    run chains concurrently. Defaults to \code{getOption("mc.cores", 1L)}.
+    Ignored when \code{n.chains == 1}. On Unix-like systems chains run
+    via \code{\link[parallel]{mclapply}} (forking); on Windows a
+    \code{\link[parallel]{makeCluster}} PSOCK cluster is used. The number
+    of workers actually launched is \code{min(mc.cores, n.chains)}.}
+
+  \item{seed}{integer or integer vector controlling reproducibility.
+    \code{NULL} (the default) leaves R's RNG state alone. A scalar
+    integer is passed to \code{\link{set.seed}} and used to derive
+    \code{n.chains} per-chain seeds. A vector of length \code{n.chains}
+    supplies one seed per chain directly. Note that within-chain
+    parallelism (\code{n.threads > 1}) draws from per-thread PCG32
+    streams seeded deterministically from R's RNG; with a fixed
+    \code{seed} and a fixed \code{n.threads}, results are reproducible.}
+
+  \item{chain.sd}{positive numeric, standard deviation of the
+    \code{\link{rnorm}} perturbation added to the \code{startvals} for
+    chains 2..\code{n.chains}. Larger values disperse start values
+    further across the parameter space, which can be useful for
+    convergence diagnostics. Ignored when \code{n.chains == 1}.}
+
+  \item{n.threads}{positive integer, number of OpenMP threads used
+    \emph{within} each chain. Defaults to
+    \code{getOption("pscl.n.threads", 1L)}. Only honoured by
+    \code{.backend = "v5"} (the function emits a warning if set
+    \code{> 1} for any other backend). The total worker demand is
+    \code{min(mc.cores, n.chains) * n.threads}; if this exceeds the
+    number of physical cores reported by
+    \code{\link[parallel]{detectCores}(logical = FALSE)}, a warning is
+    issued. The function does \emph{not} auto-budget across chains and
+    threads -- the user is responsible for sizing the two together.}
+
+  \item{.backend}{character, selects the C implementation of the Gibbs
+    sampler. The default \code{"classic"} is the long-standing
+    single-threaded backend (\code{IDEAL.c}) shipped with previous
+    releases of \pkg{pscl}; existing scripts will continue to behave
+    identically without setting this argument. The remaining choices
+    are progressively rewritten variants culminating in \code{"v5"}, a
+    multi-threaded OpenMP implementation that is the only backend
+    sensitive to \code{n.threads}. Treat this argument as experimental
+    -- the leading dot signals that the option set may change between
+    releases as the v5 backend matures and (eventually) becomes the
+    default.}
 }
 
 \details{The function fits a \code{d}+1 parameter item-response model to
@@ -246,6 +305,42 @@ ideal(object, codes = object$codes,
   extreme voting histories (the equivalent in the educational testing
   setting is a test-taker who gets almost every item right or wrong).
 
+  \strong{Multiple chains}.  Setting \code{n.chains > 1} runs that many
+  independent MCMC chains. Each chain has its own seed (derived from
+  \code{seed} if supplied, otherwise drawn from R's RNG) and chains
+  2...\code{n.chains} start from a \code{rnorm(., sd = chain.sd)}
+  perturbation of the start values used for chain 1. Chains are
+  dispatched concurrently via \code{\link[parallel]{mclapply}} (Unix) or
+  a PSOCK \code{\link[parallel]{makeCluster}} (Windows), with up to
+  \code{min(mc.cores, n.chains)} workers running at once. The return
+  value is a list of \code{ideal} objects with class \code{"idealList"};
+  use \code{\link{idealToMCMC}} to convert it to a \code{coda}
+  \code{mcmc.list} for \code{\link[coda]{gelman.diag}} and similar
+  diagnostics.
+
+  \emph{The user is responsible
+  for identification across chains}. Without identifying restrictions,
+  separate chains can converge to different reflections, rotations and
+  rescalings of the latent space, and naively pooling them is
+  meaningless. As a convenience, when \code{d == 1} and
+  \code{n.chains > 1} the function applies a sign-flip alignment to
+  chains 2...\code{n.chains} based on the sign of
+  \code{cor(xbar)} against chain 1; this resolves the polarity
+  ambiguity but nothing more. For \code{d > 1}, no automatic alignment
+  is performed -- supply identifying priors or use
+  \code{\link{constrain.legis}} / \code{\link{constrain.items}} /
+  \code{\link{postProcess}} to align chains \emph{ex post} before
+  computing convergence diagnostics or pooling.
+
+  \strong{Within-chain parallelism}.  When \code{.backend = "v5"}, each
+  chain may itself be parallelised across \code{n.threads} OpenMP
+  threads. The total concurrent worker count is
+  \code{min(mc.cores, n.chains) * n.threads}; the function warns if
+  this exceeds \code{\link[parallel]{detectCores}(logical = FALSE)} but
+  does not auto-budget. As a rule of thumb on a workstation, prefer
+  \code{n.chains} workers up to the number of chains you actually want,
+  and only then add threads per chain.
+
   % The MCMC algorithm can generate better performance
   % via a parameter expansion strategy usually referred to as \emph{marginal
   % data augmentation} (e.g., van Dyk and Meng 2001).  The idea is to
@@ -267,7 +362,13 @@ ideal(object, codes = object$codes,
   % \code{mda=FALSE} in the call to \code{ideal}.
 }
   
-\value{a \code{\link{list}} of class \code{ideal} with named components
+\value{When \code{n.chains == 1} (the default), a \code{\link{list}} of
+  class \code{ideal} with named components as listed below. When
+  \code{n.chains > 1}, a list of length \code{n.chains}, each element
+  itself an \code{ideal} object as below; the outer list has class
+  \code{"idealList"} and carries attributes \code{seeds} (the per-chain
+  seeds used) and \code{n.chains}. Pass it to \code{\link{idealToMCMC}}
+  to obtain a \code{coda} \code{mcmc.list}.
   
   \item{n}{\code{\link{numeric}}, integer, number of legislators in the
     analysis, after any subsetting via processing the \code{dropList}.}
@@ -385,7 +486,25 @@ id1 <- ideal(s109,
              store.item=TRUE,
              maxiter=260E3,
              burnin=10E3,
-             thin=100)  
+             thin=100)
+
+## Four parallel chains, each running on 2 OpenMP threads (requires
+## .backend = "v5"). Total worker demand is 4 * 2 = 8; on a machine
+## with fewer than 8 physical cores a warning will be issued.
+id4 <- ideal(s109,
+             d = 1,
+             startvals = list(x = x0),
+             maxiter = 5000, burnin = 1000, thin = 50,
+             store.item = TRUE,
+             n.chains = 4L,
+             mc.cores = 4L,
+             n.threads = 2L,
+             seed = 42L,
+             .backend = "v5")
+
+## Convergence diagnostics via coda
+mcl <- idealToMCMC(id4)
+coda::gelman.diag(mcl)
 }
 }
 \keyword{models}

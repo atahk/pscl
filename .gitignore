@@ -6,3 +6,9 @@ src/*.o
 src/*.so
 src/*.dll
 /revdep/.cache.rds
+/bench/*
+*.Rcheck
+*.Rproj
+.DS_Store
+*.tar.gz
+

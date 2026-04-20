@@ -1,11 +1,16 @@
 ## convert ideal object to MCMC object
-
 idealToMCMC <- function(object, burnin=NULL){
+  if (inherits(object, "idealList")) {
+    return(coda::mcmc.list(lapply(object, idealToMCMC, burnin = burnin)))
+  }
+
   if(!inherits(object, "ideal"))
     stop("idealToMCMC only defined for objects of class ideal")
-  
+
   if(is.null(burnin))
     b <- eval(object$call$burnin)
+  else
+    b <- burnin
   keep <- checkBurnIn(object,b)
 
   iters <- as.numeric(dimnames(object$x[keep,,])[[1]])

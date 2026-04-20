@@ -79,3 +79,55 @@ void free_imatrix(int **m, long nr)
   }
   free(m);
 }
+
+/* Contiguous-storage variants: one big data block plus a row-pointer
+   array pointing into it. Element access m[i][j] is unchanged, so any
+   existing helper taking (double **, int **) works without modification. */
+
+double **dmatrix_contig(long nr, long nc)
+{
+  double **m;
+  double *data;
+  long i;
+
+  if (nr <= 0 || nc <= 0) return NULL;
+
+  m = (double **) calloc(nr, sizeof(double *));
+  if (!m) memallocerror();
+  data = (double *) calloc((size_t) nr * (size_t) nc, sizeof(double));
+  if (!data) memallocerror();
+
+  for (i = 0; i < nr; i++) m[i] = data + i * nc;
+  return m;
+}
+
+int **imatrix_contig(long nr, long nc)
+{
+  int **m;
+  int *data;
+  long i;
+
+  if (nr <= 0 || nc <= 0) return NULL;
+
+  m = (int **) calloc(nr, sizeof(int *));
+  if (!m) memallocerror();
+  data = (int *) calloc((size_t) nr * (size_t) nc, sizeof(int));
+  if (!data) memallocerror();
+
+  for (i = 0; i < nr; i++) m[i] = data + i * nc;
+  return m;
+}
+
+void free_dmatrix_contig(double **m)
+{
+  if (m == NULL) return;
+  free(m[0]);    /* the contiguous data block */
+  free(m);       /* the row-pointer array */
+}
+
+void free_imatrix_contig(int **m)
+{
+  if (m == NULL) return;
+  free(m[0]);
+  free(m);
+}

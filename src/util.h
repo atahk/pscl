@@ -8,3 +8,10 @@ int **imatrix(long nr, long nc);
 // void free_dvector(double *v);
 void free_dmatrix(double **m, long nr);
 void free_imatrix(int **m, long nr);
+
+/* contiguous-storage variants: one data block + row pointers into it.
+   Access API (double **, int **) is unchanged, so existing helpers work. */
+double **dmatrix_contig(long nr, long nc);
+int    **imatrix_contig(long nr, long nc);
+void free_dmatrix_contig(double **m);
+void free_imatrix_contig(int **m);

@@ -129,23 +129,25 @@ readKH(file,
   a relatively small fraction of all Congressional roll calls).   
 }
 
-\references{Poole, Keith and Howard Rosenthal.  1997.  \emph{Congress: A
+\references{
+
+  Poole, Keith and Howard Rosenthal.  1997.  \emph{Congress: A
   Political-Economic History of Roll Call Voting}.  New York: Oxford
   University Press.  
 
-Poole, Keith.  \url{https://legacy.voteview.com}
+  Poole, Keith.  \url{https://legacy.voteview.com}
 
-Rosenthal, Howard L. and Keith T. Poole.  \emph{United States Congressional
-Roll Call Voting Records, 1789-1990: Reformatted Data [computer
-file].} 2nd ICPSR release. Pittsburgh, PA: Howard L. Rosenthal and Keith
-T. Poole, Carnegie Mellon University, Graduate School of Industrial
-Administration [producers], 1991. Ann Arbor, MI: Inter-university
-Consortium for Political and Social Research [distributor], 2000.  
-\url{https://www.icpsr.umich.edu/icpsrweb/ICPSR/studies/09822}
+  Rosenthal, Howard L. and Keith T. Poole.  \emph{United States Congressional
+  Roll Call Voting Records, 1789-1990: Reformatted Data [computer
+  file].} 2nd ICPSR release. Pittsburgh, PA: Howard L. Rosenthal and Keith
+  T. Poole, Carnegie Mellon University, Graduate School of Industrial
+  Administration [producers], 1991. Ann Arbor, MI: Inter-university
+  Consortium for Political and Social Research [distributor], 2000.  
+  \doi{10.3886/ICPSR09822.v2}
+
 }
 
-\seealso{\code{\link{rollcall}}
-}
+\seealso{\code{\link{rollcall}}}
 
 \examples{
 \dontrun{

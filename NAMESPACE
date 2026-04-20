@@ -85,6 +85,10 @@ importFrom("utils", "tail")
   S3method("print", "summary.ideal")
   S3method("summary", "ideal")
 
+## methods for class idealList
+  S3method("print", "idealList")
+  S3method("summary", "idealList")
+
 ## methods for class rollcall
   S3method("dropUnanimous", "rollcall")
   S3method("print", "rollcall")

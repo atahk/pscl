@@ -36,7 +36,7 @@
   these data; labels could not recovered for two of the constituencies.
 }
 \source{
-   Jonathan Katz; Gary King. 1999. "Replication data for: A Statistical Model of Multiparty Electoral Data", \url{http://hdl.handle.net/1902.1/QIGTWZYTLZ}
+   Jonathan Katz; Gary King. 1999. "Replication data for: A Statistical Model of Multiparty Electoral Data", \doi{10.7910/DVN/NDS9AT}
   
   %%Martin Baxter.  \url{http://www.electoralcalculus.co.uk/electdata_1992ob.txt}
 }

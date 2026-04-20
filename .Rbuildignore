@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^revdep$
+^bench$
+^RStudio\.app$
+^pscl_.*\.tar\.gz$
+^TODO$
